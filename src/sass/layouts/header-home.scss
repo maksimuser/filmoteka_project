@@ -1,8 +1,8 @@
 .page-header {
-  position: absolute;
   z-index: 1;
   left: 0;
   right: 0;
+  height: 230px;
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.56),
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: space-between;
   margin-right: auto;
-  align-items: flex-end;
 }
 
 .logo-name {
@@ -43,7 +42,7 @@
 
 .header-navigation {
   display: flex;
-  margin-top: 46px;
+  margin-top: 58px;
   list-style: none;
   margin-bottom: 0;
 }
@@ -118,9 +117,11 @@
   }
 
   .logo-name {
-    display: block;
+    display: flex;
+    align-self: flex-end;
     font-size: 30px;
     color: $white-color;
+    margin: auto;
   }
 
   .logo {
@@ -165,3 +166,18 @@
   margin-top: 20px;
   right: 20px;
 }
+
+.logo-span {
+  display: flex;
+  align-items: flex-end;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
