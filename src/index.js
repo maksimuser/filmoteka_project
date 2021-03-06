@@ -6,3 +6,5 @@ import updateTrendMarkup from './js/update-markup';
 apiService.fetchTrendMovie().then(trendMovies => {
   updateTrendMarkup(trendMovies);
 });
+
+import './js/modal';
