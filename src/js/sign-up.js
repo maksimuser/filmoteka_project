@@ -12,7 +12,7 @@ const setupUI = user => {
          obj.db.collection('users').doc(user.uid).get().then(doc => {
           const html = `
         <div>Logged in as ${user.email}</div>
-        <div>${doc.data().bio}</div>
+        <div>Nick-name ${doc.data().bio}</div>
         `;
         accountDetails.innerHTML = html;  
         })
@@ -33,16 +33,16 @@ const setupUI = user => {
 const setupGuides = data => {
     if (data.length) {  
     let html = ''
-    data.forEach(doc => {
-        const guide = doc.data()
-        const li = `
-      <li>
-      <div class="collapsible-header grey lighten-4">${guide.title}</div>
-      <div class="collapsible-body white">${guide.content}</div>
-      </li>`
-        html += li
-    })
-    guideList.innerHTML = html
+    // data.forEach(doc => {
+    //     const guide = doc.data()
+    //     const li = `
+    //   <li>
+    //   <div class="collapsible-header grey lighten-4">${guide.title}</div>
+    //   <div class="collapsible-body white">${guide.content}</div>
+    //   </li>`
+    //     html += li
+    // })
+    // guideList.innerHTML = html
     } else {
          guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>'
 }
@@ -81,6 +81,8 @@ obj.auth.onAuthStateChanged(user => {
 //           console.log(err.messagea)
 //       })
 // })
+
+
 //signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', e => {
@@ -130,4 +132,3 @@ loginForm.addEventListener('submit', e => {
     })
 })
 
-console.log(guideList)
