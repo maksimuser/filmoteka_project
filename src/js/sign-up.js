@@ -114,7 +114,7 @@ logout.addEventListener('click', e => {
 })
 
 
-//login
+//login и шо?
 
 
 const loginForm = document.querySelector('#login-form')
