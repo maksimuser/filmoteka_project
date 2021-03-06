@@ -34,4 +34,4 @@ const db = firebase.firestore()
 
 db.settings({ timestampsInSnapshots: true })
 
-export default {auth,db}
+export default {auth,db};
