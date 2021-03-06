@@ -1,0 +1,15 @@
+{{#each this}}
+   <li class="trend-item">
+    <a class="trend-link" href="#">
+        <div class="trend-thumb" >
+            <img class="trend-poster" src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{media_type}}" data-type="{{media_type}}" data-src="{{id}}" height="400">
+        </div>
+
+       <h1 class="trend-title">{{title}}</h1>
+         <div class="trend-text">
+            <p class="trend-genre data">{{genre_ids}} | {{release_date}}</p>
+            {{!-- <p class="trend-vote">{{vote_average}}</p> --}}
+        </div>  
+    </a>     
+ </li>
+{{/each}}
