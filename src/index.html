@@ -22,6 +22,11 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
   </head>
 
   <body>
@@ -52,15 +57,42 @@
             </a>
           </span>
 
-          <ul class="header-navigation">
+          <ul id="nav-mobile" class="header-navigation">
             <li class="navigation-item current">
-              <a href="" class="navigation-link">Home</a>
+              <a href="#" class="navigation-link" data-target="modal-account"
+                >Home</a
+              >
             </li>
-            <li class="navigation-item">
-              <a href="" class="navigation-link">My library</a>
+            <li class="navigation-item logged-in" style="display: none">
+              <a href="#" class="navigation-link" id="logout">Logout</a>
+            </li>
+            <li class="navigation-item logged-in" style="display: none">
+              <a
+                href=""
+                class="navigation-link modal-trigger"
+                data-target="modal-account"
+                >My library</a
+              >
+            </li>
+            <li class="navigation-item logged-out" style="display: none">
+              <a
+                href="#"
+                class="navigation-link modal-trigger"
+                data-target="modal-login"
+                >Login</a
+              >
+            </li>
+            <li class="navigation-item logged-out" style="display: none">
+              <a
+                href="#"
+                class="navigation-link modal-trigger"
+                data-target="modal-signup"
+                >Sign up</a
+              >
             </li>
           </ul>
         </div>
+
         <form class="search-form" id="search-form">
           <input
             class="search-input js-input"
@@ -76,14 +108,91 @@
           </a>
         </form>
       </div>
+      <!-- ........................................................... -->
+      <!-- SIGN UP MODAL -->
+      <div id="modal-signup" class="modal">
+        <div class="modal-content">
+          <h4>Sign up</h4>
+          <br />
+          <form id="signup-form">
+            <div class="input-field">
+              <input type="email" id="signup-email" required />
+              <label for="signup-email">Email address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" required />
+              <label for="signup-password">Choose password</label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="signup-bio" required />
+              <label for="signup-bio">One Line Bio</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+          </form>
+        </div>
+      </div>
 
-      <!-- Кнопки для my library -->
+      <!-- LOGIN MODAL -->
+      <div id="modal-login" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4>
+          <br />
+          <form id="login-form">
+            <div class="input-field">
+              <input type="email" id="login-email" required />
+              <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" required />
+              <label for="login-password">Your password</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Login</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ACCOUNT MODAL -->
+      <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+          <h4>My library</h4>
+          <br />
+          <div class="account-details"></div>
+        </div>
+      </div>
+
+      <!-- CREATE GUIDE MODAL -->
+      <!-- <div id="modal-create" class="modal">
+  <div class="modal-content">
+    <h4>Create Guide</h4><br />
+    <form id="create-form">
+      <div class="input-field">
+        <input type="text" id="title" required>
+        <label for="title">Guide Title</label>
+      </div>
+      <div class="input-field">
+        <textarea id="content" class="materialize-textarea" required></textarea>
+        <label for="content">Guide Content</label>
+      </div>
+      <button class="btn yellow darken-2 z-depth-0">Create</button>
+    </form>
+  </div>
+</div> -->
+      <!-- GUIDE LIST -->
+      <div class="container" style="margin-top: 40px">
+        <ul class="collapsible z-depth-0 guides" style="border: none">
+          style="display: none"
+        </ul>
+      </div>
+
+      <!-- ................................................................. -->
+      <!-- Кнопки my library -->
 
       <!-- <div class="btn-wrapper">
         <button type="button" class="header-btn watched-btn">Watched</button>
         <button type="button" class="header-btn queue-btn">Queue</button>
       </div> -->
     </header>
+
     <main>
       <!-- секция "trend movies" -->
       <div class="section-trend">
@@ -92,5 +201,7 @@
         </div>
       </div>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
