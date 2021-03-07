@@ -58,7 +58,7 @@
           </span>
 
           <ul id="nav-mobile" class="header-navigation">
-            <li class="navigation-item current">
+            <li class="navigation-item current home">
               <a href="#" class="navigation-link" data-target="modal-account"
                 >Home</a
               >
@@ -71,6 +71,7 @@
                 href=""
                 class="navigation-link modal-trigger"
                 data-target="modal-account"
+                data-link="library-link"
                 >My library</a
               >
             </li>
@@ -152,13 +153,7 @@
       </div>
 
       <!-- ACCOUNT MODAL -->
-      <div id="modal-account" class="modal">
-        <div class="modal-content center-align">
-          <h4>My library</h4>
-          <br />
-          <div class="account-details"></div>
-        </div>
-      </div>
+      
 
       <!-- CREATE GUIDE MODAL -->
       <!-- <div id="modal-create" class="modal">
@@ -198,6 +193,19 @@
       <div class="section-trend">
         <div class="container">
           <ul class="trend-movies-js trend-items"></ul>
+        </div>
+      </div>
+
+      <div class="section-my-library " style="display: none">
+        <div class="container">
+          <div id="modal-account" class="account-modal" >
+            <div class="modal-content center-align">
+              <h4>My library</h4>
+              <br />
+              <div class="account-details"></div>
+            </div>
+            </div>
+          <ul class="list-library trend-items"></ul>
         </div>
       </div>
     </main>

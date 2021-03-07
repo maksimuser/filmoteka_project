@@ -1,10 +1,37 @@
 import obj from './auth'
 import "firebase/firestore";
+import trendMoviesMarkup from '../templates/trend-movies.hbs';
+// import openModal from '../js/modal'
+// import { defaults } from 'gh-pages';
 
 const guideList = document.querySelector('.guides')
 const loggedOutLinks = document.querySelectorAll('.logged-out')
 const loggedInLinks = document.querySelectorAll('.logged-in')
 const accountDetails = document.querySelector('.account-details')
+const accountModal = document.querySelector('.account-modal')
+
+
+const myLibrarySection = document.querySelector('.section-my-library')
+const listLibrary = document.querySelector('.list-library')
+const sectionTrend = document.querySelector('.section-trend')
+const homeLinkRef = document.querySelector('.home')
+
+
+homeLinkRef.addEventListener('click',toExitLibrary)
+// Выйти из кабинета
+function toExitLibrary() {
+     myLibrarySection.style.display = 'none'
+        sectionTrend.style.display = 'block'
+}
+// Войти в кабинет
+function toComeInLibrary(e) {
+     myLibrarySection.style.display = 'block'
+    sectionTrend.style.display = 'none'
+    
+    
+}
+
+
 
 const setupUI = user => {
     if (user) {
@@ -18,31 +45,44 @@ const setupUI = user => {
         })
         
         // togle UI elements
+        
         loggedInLinks.forEach(item => item.style.display = 'block')
+        loggedInLinks[1].addEventListener('click', toComeInLibrary)
+        
         loggedOutLinks.forEach(item => item.style.display = 'none')
+        
     } else {
      //hide account info
         accountDetails.innerHTML = '';
     //togle UI elements
+        
         loggedInLinks.forEach(item => item.style.display = 'none')
         loggedOutLinks.forEach(item => item.style.display = 'block')
+        
+        
     }
 }
 
  //setup guides
 const setupGuides = data => {
+    
     if (data.length) {  
     let html = ''
-    // data.forEach(doc => {
-    //     const guide = doc.data()
+    data.forEach(doc => {
+        const guide = doc.data()
+        console.log(guide.content)
+         const markup = trendMoviesMarkup(guide.content);
+          listLibrary.insertAdjacentHTML('beforeend', markup);
+       
     //     const li = `
     //   <li>
     //   <div class="collapsible-header grey lighten-4">${guide.title}</div>
     //   <div class="collapsible-body white">${guide.content}</div>
     //   </li>`
     //     html += li
-    // })
-    // guideList.innerHTML = html
+    })
+        
+    guideList.innerHTML = html
     } else {
          guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>'
 }
@@ -50,9 +90,9 @@ const setupGuides = data => {
 
 //listen for auth status changes
 obj.auth.onAuthStateChanged(user => {
-    console.log(user)
     if (user) {
-    obj.db.collection('guides').onSnapshot(snapshot => {
+        obj.db.collection('guides').onSnapshot(snapshot => {
+        
         setupGuides(snapshot.docs);
         setupUI(user);
     }, err => {
@@ -84,6 +124,7 @@ obj.auth.onAuthStateChanged(user => {
 
 
 //signup
+
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -94,7 +135,8 @@ signupForm.addEventListener('submit', e => {
 
     obj.auth.createUserWithEmailAndPassword(email, password).then(cred => {
         return obj.db.collection('users').doc(cred.user.uid).set({
-            bio: signupForm['signup-bio'].value
+            bio: signupForm['signup-bio'].value,
+            
         })
         
     }).then(() => {
@@ -132,3 +174,27 @@ loginForm.addEventListener('submit', e => {
     })
 })
 
+
+ const cardsArr = []
+function addToWatched() {
+    
+// const createForm = document.querySelector('#create-form')
+// createForm.addEventListener('submit', e => {
+//     e.preventDefault();
+    obj.db.collection('guides').add({
+        // title: createForm['title'].value,
+        // content: createForm['content'].value
+        content: [...cardsArr],
+        
+    }).then((e) => {
+          console.log(e.data())
+    }).catch(err => {
+          console.log(err.messagea)
+      })
+
+}
+
+function getCard(card) {
+   cardsArr.push(card) 
+}
+export default {addToWatched,getCard}

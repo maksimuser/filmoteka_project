@@ -1,10 +1,16 @@
 import modal from '../templates/main-modal.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/src/styles/main.scss';
+import signFn from '../js/sign-up';
+import { defaults } from 'gh-pages';
+
 const filmCard = document.querySelector(`.section-trend`);
+
 const key = `ebb87b3c3ccf067a0867ba65db09dab4`;
+
 function openModal(event) {
   event.preventDefault();
+    
   const idNum = event.target.dataset.src;
   const type = event.target.dataset.type;
   fetch(
@@ -12,6 +18,7 @@ function openModal(event) {
   )
     .then(res => res.json())
     .then(filmById => {
+      
       const formModal = modal(filmById);
       const instance = basicLightbox.create(
         `
@@ -19,14 +26,18 @@ function openModal(event) {
         ${formModal}
         
         <button type="button" class="modal-close-button" data-action="close-modal"></button>
-  
     
 `,
         {
           onShow: instance => {
-            instance.element().querySelector('.modal-close-button').onclick =
+              instance.element().querySelector('.modal-close-button').onclick =
               instance.close;
+              instance.element().querySelector('.modal-box').addEventListener('click',signFn.getCard(filmById))
+              instance.element().querySelector('.to-watched').addEventListener('click',signFn.addToWatched)
+             
+
           },
+          
         },
       );
 
@@ -35,3 +46,5 @@ function openModal(event) {
     .catch(error => console.log(error));
 }
 filmCard.addEventListener(`click`, openModal);
+
+// export default openModal
