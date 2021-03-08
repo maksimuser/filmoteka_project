@@ -108,6 +108,8 @@
             </svg>
           </a>
         </form>
+
+        <div id="example-note"></div>
       </div>
       <!-- ........................................................... -->
       <!-- SIGN UP MODAL -->
@@ -196,6 +198,7 @@
         </div>
       </div>
 
+
       <div class="section-my-library " style="display: none">
         <div class="section-my-library container">
           <div id="modal-account" class="account-modal" >
@@ -206,9 +209,43 @@
             </div>
             </div>
           <ul class="list-library trend-items"></ul>
+
+      <!-- спиннер -->
+      <div class="d-flex justify-content-center">
+        <div class="loader semipolar-spinner" :style="spinnerStyle">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+
         </div>
       </div>
     </main>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <ul>
+        <!--pages or li are comes from javascript -->
+      </ul>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-description">
+          © 2021 | All Rights Reserved |
+          <span class="">Developed with</span>
+          <svg class="heart-icon" width="13" height="14">
+            <use href="./images/symbol-defs.svg#icon-heart"></use>
+          </svg>
+
+          <span class="">by</span>
+          <a class="footer-description__link" href="">
+            <span id="team">GoIT Students</span>
+          </a>
+        </p>
+      </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>

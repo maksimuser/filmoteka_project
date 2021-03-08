@@ -2,8 +2,8 @@ import axios from 'axios';
 const apiKey = 'ebb87b3c3ccf067a0867ba65db09dab4';
 
 export default {
-  async fetchTrendMovie() {
-    axios.defaults.baseURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=1`;
+  async fetchTrendMovie(page = 1) {
+    axios.defaults.baseURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`;
     try {
       const resTrend = await axios.get();
 
@@ -12,6 +12,7 @@ export default {
       }
 
       const dataTrend = resTrend.data.results;
+      this.getAvailWidth(dataTrend);
 
       return this.requestParamTrend(dataTrend);
     } catch (error) {
@@ -50,5 +51,17 @@ export default {
           },
         );
       });
+  },
+
+  getAvailWidth(dataTrend) {
+    dataTrend.length = 9;
+    if (screen.availWidth < 767) {
+      dataTrend.length = 4;
+      console.log(dataTrend.length);
+    }
+    if (screen.availWidth >= 768 && screen.availWidth <= 1023) {
+      dataTrend.length = 8;
+      console.log(dataTrend.length);
+    }
   },
 };
