@@ -12,6 +12,7 @@ export default {
       }
 
       const dataTrend = resTrend.data.results;
+      this.getAvailWidth(dataTrend);
 
       return this.requestParamTrend(dataTrend);
     } catch (error) {
@@ -50,5 +51,17 @@ export default {
           },
         );
       });
+  },
+
+  getAvailWidth(dataTrend) {
+    dataTrend.length = 9;
+    if (screen.availWidth < 767) {
+      dataTrend.length = 4;
+      console.log(dataTrend.length);
+    }
+    if (screen.availWidth >= 768 && screen.availWidth <= 1023) {
+      dataTrend.length = 8;
+      console.log(dataTrend.length);
+    }
   },
 };
