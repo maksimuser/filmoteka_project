@@ -107,6 +107,8 @@
             </svg>
           </a>
         </form>
+
+        <div id="example-note"></div>
       </div>
       <!-- ........................................................... -->
       <!-- SIGN UP MODAL -->
@@ -198,6 +200,17 @@
       <div class="section-trend">
         <div class="container">
           <ul class="trend-movies-js trend-items"></ul>
+        </div>
+      </div>
+
+      <!-- спиннер -->
+      <div class="d-flex justify-content-center">
+        <div class="loader semipolar-spinner" :style="spinnerStyle">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
         </div>
       </div>
     </main>
