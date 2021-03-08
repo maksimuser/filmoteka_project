@@ -16,7 +16,7 @@ const firebaseConfig = {
       
  // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-    firebase.analytics();  
+    // firebase.analytics();  
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   M.Collapsible.init(items);
 
 });
+
 
 
 const auth = firebase.auth();

@@ -10,4 +10,6 @@ function updateTrendMarkup(trendMovies) {
   refs.movies.insertAdjacentHTML('beforeend', markup);
 }
 
+
+
 export default updateTrendMarkup;
