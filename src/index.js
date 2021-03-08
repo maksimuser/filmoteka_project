@@ -4,6 +4,7 @@ import './js/modal';
 import './js/auth';
 import './js/sign-up';
 import './js/input-service';
+import './js/pagination';
 
 import apiService from './js/api-service';
 import updateTrendMarkup from './js/update-markup';
