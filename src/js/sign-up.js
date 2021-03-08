@@ -1,8 +1,13 @@
 import obj from './auth'
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/analytics";
 import "firebase/firestore";
 import trendMoviesMarkup from '../templates/trend-movies.hbs';
-// import openModal from '../js/modal'
-// import { defaults } from 'gh-pages';
+import openModal from '../js/modal'
+import { log } from 'handlebars';
+
 
 const guideList = document.querySelector('.guides')
 const loggedOutLinks = document.querySelectorAll('.logged-out')
@@ -25,14 +30,11 @@ function toExitLibrary() {
 }
 // Войти в кабинет
 function toComeInLibrary(e) {
-     myLibrarySection.style.display = 'block'
+    myLibrarySection.style.display = 'block'
+    myLibrarySection.addEventListener(`click`, openModal);
     sectionTrend.style.display = 'none'
     
-    
 }
-
-
-
 const setupUI = user => {
     if (user) {
         //account info
@@ -58,42 +60,31 @@ const setupUI = user => {
         
         loggedInLinks.forEach(item => item.style.display = 'none')
         loggedOutLinks.forEach(item => item.style.display = 'block')
-        
-        
-    }
+}
 }
 
  //setup guides
+ 
 const setupGuides = data => {
     
-    if (data.length) {  
-    let html = ''
-    data.forEach(doc => {
-        const guide = doc.data()
-        console.log(guide.content)
-         const markup = trendMoviesMarkup(guide.content);
-          listLibrary.insertAdjacentHTML('beforeend', markup);
-       
-    //     const li = `
-    //   <li>
-    //   <div class="collapsible-header grey lighten-4">${guide.title}</div>
-    //   <div class="collapsible-body white">${guide.content}</div>
-    //   </li>`
-    //     html += li
-    })
-        
-    guideList.innerHTML = html
+    if (data) {
+        let markup = ''
+         markup += trendMoviesMarkup(data);
+        listLibrary.insertAdjacentHTML('beforeend', markup);  
+    
     } else {
          guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>'
 }
 }
 
 //listen for auth status changes
-obj.auth.onAuthStateChanged(user => {
+
+    obj.auth.onAuthStateChanged(user => {
+    
     if (user) {
-        obj.db.collection('guides').onSnapshot(snapshot => {
+        obj.db.collection('users').doc(user.uid).onSnapshot(doc => {
         
-        setupGuides(snapshot.docs);
+        setupGuides(doc.data().cards);
         setupUI(user);
     }, err => {
             console.log(err)
@@ -103,6 +94,131 @@ obj.auth.onAuthStateChanged(user => {
     setupGuides([])
     }
 })
+
+
+
+
+
+//signup
+
+const signupForm = document.querySelector('#signup-form');
+signupForm.addEventListener('submit', e => {
+    e.preventDefault();
+    
+//get user info 
+    const email = signupForm['signup-email'].value;
+    const password = signupForm['signup-password'].value;
+    // sign up the user
+
+    obj.auth.createUserWithEmailAndPassword(email, password).then(cred => {
+     
+        return obj.db.collection('users').doc(cred.user.uid).set({
+            bio: signupForm['signup-bio'].value,
+            cards: []
+        })
+        
+    }).then(() => {
+        
+        const modal = document.querySelector('#modal-signup')
+        M.Modal.getInstance(modal).close()
+        signupForm.reset()
+    })
+})
+
+//logout
+
+const logout = document.querySelector('#logout');
+
+logout.addEventListener('click', e => {
+    e.preventDefault();
+    obj.auth.signOut()
+})
+
+
+//login 
+
+
+const loginForm = document.querySelector('#login-form')
+loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    //get user info
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+    obj.auth.signInWithEmailAndPassword(email, password).then(cred => {
+        
+        //close the login modal and reset the form
+        const modal = document.querySelector('#modal-login')
+        M.Modal.getInstance(modal).close()
+        loginForm.reset()
+    })
+})
+
+
+
+let cardsArr = ''
+function removeCard() {
+ obj.auth.onAuthStateChanged(user => {
+ obj.db.collection("users").doc(user.uid).update({
+    cards: firebase.firestore.FieldValue.arrayRemove(cardsArr)
+  })
+})
+    
+}
+function addToWatched(card) {
+    console.log(cardsArr)
+ obj.auth.onAuthStateChanged(user => {
+ obj.db.collection("users").doc(user.uid).update({
+    cards: firebase.firestore.FieldValue.arrayUnion(cardsArr)
+})
+
+    })
+
+}
+function getCard(card) {
+    
+    cardsArr = card;
+    
+}
+
+
+
+//  let qwe =  obj.auth.onAuthStateChanged(user => {
+   
+//    return user.uid
+//  })
+// console.log(qwe())
+
+
+
+// console.log(washingtonRef)
+
+
+
+
+
+
+
+export default {addToWatched,getCard,removeCard}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 // create nem guide
 
@@ -121,80 +237,3 @@ obj.auth.onAuthStateChanged(user => {
 //           console.log(err.messagea)
 //       })
 // })
-
-
-//signup
-
-const signupForm = document.querySelector('#signup-form');
-signupForm.addEventListener('submit', e => {
-    e.preventDefault();
-//get user info 
-    const email = signupForm['signup-email'].value;
-    const password = signupForm['signup-password'].value;
-    // sign up the user
-
-    obj.auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        return obj.db.collection('users').doc(cred.user.uid).set({
-            bio: signupForm['signup-bio'].value,
-            
-        })
-        
-    }).then(() => {
-        const modal = document.querySelector('#modal-signup')
-        M.Modal.getInstance(modal).close()
-        signupForm.reset()
-    })
-})
-
-//logout
-
-const logout = document.querySelector('#logout');
-
-logout.addEventListener('click', e => {
-    e.preventDefault();
-    obj.auth.signOut()
-})
-
-
-//login и шо?
-
-
-const loginForm = document.querySelector('#login-form')
-loginForm.addEventListener('submit', e => {
-    e.preventDefault();
-    //get user info
-    const email = loginForm['login-email'].value;
-    const password = loginForm['login-password'].value;
-    obj.auth.signInWithEmailAndPassword(email, password).then(cred => {
-        
-        //close the login modal and reset the form
-        const modal = document.querySelector('#modal-login')
-        M.Modal.getInstance(modal).close()
-        loginForm.reset()
-    })
-})
-
-
- const cardsArr = []
-function addToWatched() {
-    
-// const createForm = document.querySelector('#create-form')
-// createForm.addEventListener('submit', e => {
-//     e.preventDefault();
-    obj.db.collection('guides').add({
-        // title: createForm['title'].value,
-        // content: createForm['content'].value
-        content: [...cardsArr],
-        
-    }).then((e) => {
-          console.log(e.data())
-    }).catch(err => {
-          console.log(err.messagea)
-      })
-
-}
-
-function getCard(card) {
-   cardsArr.push(card) 
-}
-export default {addToWatched,getCard}

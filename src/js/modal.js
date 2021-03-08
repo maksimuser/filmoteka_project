@@ -2,7 +2,7 @@ import modal from '../templates/main-modal.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/src/styles/main.scss';
 import signFn from '../js/sign-up';
-import { defaults } from 'gh-pages';
+
 
 const filmCard = document.querySelector(`.section-trend`);
 
@@ -14,7 +14,7 @@ function openModal(event) {
   const idNum = event.target.dataset.src;
   const type = event.target.dataset.type;
   fetch(
-    `https://api.themoviedb.org/3/${type}/${idNum}?api_key=${key}&language=en-US&external_source=imdb_id`,
+    `https://api.themoviedb.org/3/movie/${idNum}?api_key=${key}&language=en-US&external_source=imdb_id`,
   )
     .then(res => res.json())
     .then(filmById => {
@@ -33,7 +33,8 @@ function openModal(event) {
               instance.element().querySelector('.modal-close-button').onclick =
               instance.close;
               instance.element().querySelector('.modal-box').addEventListener('click',signFn.getCard(filmById))
-              instance.element().querySelector('.to-watched').addEventListener('click',signFn.addToWatched)
+            instance.element().querySelector('.to-watched').addEventListener('click', signFn.addToWatched)
+            instance.element().querySelector('.add-to-queue').addEventListener('click',signFn.removeCard)
              
 
           },
@@ -47,4 +48,4 @@ function openModal(event) {
 }
 filmCard.addEventListener(`click`, openModal);
 
-// export default openModal
+export default openModal
