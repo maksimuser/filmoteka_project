@@ -8,7 +8,6 @@ import './js/modal-team';
 
 import './js/pagination';
 
-
 import apiService from './js/api-service';
 import updateTrendMarkup from './js/update-markup';
 import inputService from './js/input-service';
