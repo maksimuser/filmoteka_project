@@ -12,6 +12,7 @@ export default {
       }
 
       const dataTrend = resTrend.data.results;
+
       this.getAvailWidth(dataTrend);
 
       return this.requestParamTrend(dataTrend);

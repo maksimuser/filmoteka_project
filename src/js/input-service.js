@@ -24,8 +24,8 @@ function goHome() {
 }
 
 export default {
-  async fetchInputMovie(searchQuery) {
-    axios.defaults.baseURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${searchQuery}`;
+  async fetchInputMovie(searchQuery, page = 1) {
+    axios.defaults.baseURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&include_adult=false&query=${searchQuery}&page=${page}`;
     try {
       const inputVal = await axios.get();
       const dataVal = inputVal.data.results;
