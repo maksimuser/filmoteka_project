@@ -74,10 +74,11 @@ export default function createPagination(totalPages, page) {
   return liTag;
 }
 element.addEventListener('click', event => {
-  //   console.log(event.target.className);
   if (event.target.className.includes('paginatorNumb')) {
-    page = event.target.dataset.number;
-    // console.log(event.target.dataset.number);
+
+    page = Number(event.target.dataset.number);
+    console.log(event.target.dataset.number);
+
   } else if (event.target.className.includes('paginatorFirst')) {
     page = 1;
   } else if (event.target.className.includes('paginatorPrev')) {
@@ -85,11 +86,9 @@ element.addEventListener('click', event => {
   } else if (event.target.className.includes('paginatorLast')) {
     page = totalPages;
   } else if (event.target.className.includes('paginatorNext')) {
-    page = Number(page) + 1;
-    // console.log(page);
-    // console.log(event.target.className);
+    page = page + 1;
   }
-  // createPagination(totalPages, page);
+
   const inputValue = searchInput.value;
   if (!inputValue) {
     apiService.fetchTrendMovie(page).then(trendMovies => {
