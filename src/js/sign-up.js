@@ -4,35 +4,71 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/analytics";
 import "firebase/firestore";
+
 import trendMoviesMarkup from '../templates/trend-movies.hbs';
 import openModal from '../js/modal'
 import { log } from 'handlebars';
 
+import * as PNotify from '@pnotify/core';
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/PNotify.css';
+
+// const searchInput = document.querySelector('.search-input')
 
 const guideList = document.querySelector('.guides')
 const loggedOutLinks = document.querySelectorAll('.logged-out')
 const loggedInLinks = document.querySelectorAll('.logged-in')
 const accountDetails = document.querySelector('.account-details')
-const accountModal = document.querySelector('.account-modal')
+// const accountModal = document.querySelector('.account-modal')
 
+const sectionWatched = document.querySelector('.section-watched')
+const listWatched = document.querySelector('.list-watched')
+const btnWatched = document.querySelector('.watched-btn')
+const btnQueue = document.querySelector('.queue-btn')
+    
 
-const myLibrarySection = document.querySelector('.section-my-library')
-const listLibrary = document.querySelector('.list-library')
+const sectionQueue = document.querySelector('.section-queue')
+const listQueue = document.querySelector('.list-queue')
+
 const sectionTrend = document.querySelector('.section-trend')
 const homeLinkRef = document.querySelector('.home')
+homeLinkRef.addEventListener('click', toExitLibrary)
+
+btnWatched.addEventListener('click', addSecWatched)
+function addSecWatched() {
+
+    sectionQueue.style.display = 'none'
+    sectionWatched.style.display = 'block'
+
+}
+
+btnQueue.addEventListener('click', addSecQueue)
+function addSecQueue() {
+    sectionQueue.style.display = 'block'
+    sectionWatched.style.display = 'none'
+
+}
 
 
-homeLinkRef.addEventListener('click',toExitLibrary)
+
 // Выйти из кабинета
 function toExitLibrary() {
-     myLibrarySection.style.display = 'none'
-        sectionTrend.style.display = 'block'
+    sectionWatched.style.display = 'none'
+    sectionQueue.style.display = 'none'
+     btnWatched.style.display = 'none'
+    btnQueue.style.display = 'none'
+    sectionTrend.style.display = 'block'
+    
 }
 // Войти в кабинет
 function toComeInLibrary(e) {
-    myLibrarySection.style.display = 'block'
-    myLibrarySection.addEventListener(`click`, openModal);
+    btnWatched.style.display = 'inline'
+    btnQueue.style.display = 'inline'
+    // searchInput.style.display = 'none'
+    sectionQueue.style.display = 'block'
     sectionTrend.style.display = 'none'
+    sectionWatched.style.display = 'none'
+    sectionQueue.addEventListener(`click`, openModal);
     
 }
 const setupUI = user => {
@@ -65,16 +101,19 @@ const setupUI = user => {
 
  //setup guides
  
-const setupGuides = data => {
+const setupGuides = (dataQueue,dataWatched) => {
+     
+    if (dataQueue) {
+        let markupQueue = ''
+         let markupWatched = ''
+        markupQueue = trendMoviesMarkup(dataQueue);
+        markupWatched = trendMoviesMarkup(dataWatched);
+        // listLibrary.insertAdjacentHTML('beforeend', markup);  
+        listQueue.innerHTML = markupQueue 
+        listWatched.innerHTML = markupWatched
+        
+    } 
     
-    if (data) {
-        let markup = ''
-         markup += trendMoviesMarkup(data);
-        listLibrary.insertAdjacentHTML('beforeend', markup);  
-    
-    } else {
-         guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>'
-}
 }
 
 //listen for auth status changes
@@ -84,16 +123,19 @@ const setupGuides = data => {
     if (user) {
         obj.db.collection('users').doc(user.uid).onSnapshot(doc => {
         
-        setupGuides(doc.data().cards);
+            setupGuides(doc.data().queue,doc.data().watched);
+             
         setupUI(user);
     }, err => {
             console.log(err)
     })
     } else {
     setupUI()
-    setupGuides([])
+    setupGuides()
     }
-})
+    })
+
+    
 
 
 
@@ -108,21 +150,53 @@ signupForm.addEventListener('submit', e => {
 //get user info 
     const email = signupForm['signup-email'].value;
     const password = signupForm['signup-password'].value;
-    // sign up the user
-
-    obj.auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    const confirmPassword = signupForm['confirm-password'].value;
+    if (password === confirmPassword) {
+         obj.auth.createUserWithEmailAndPassword(email, password).then(cred => {
      
         return obj.db.collection('users').doc(cred.user.uid).set({
             bio: signupForm['signup-bio'].value,
-            cards: []
+            queue: [],
+            watched: []
         })
         
     }).then(() => {
-        
+        PNotify.success({
+       text: 'Ргистрация прошла успешно',
+       delay: 1000,
+       addClass: 'PNotify',
+       addModalClass: 'PNotify',
+       addModelessClass: 'PNotify',
+    // styling: 'scss'
+  });
         const modal = document.querySelector('#modal-signup')
         M.Modal.getInstance(modal).close()
         signupForm.reset()
-    })
+    }).catch(PNotify.success({
+     text: 'пароль должен содержать не мение 6 симвалов',
+    delay: 1000,
+    addClass: 'PNotify',
+    addModalClass: 'PNotify',
+   addModelessClass: 'PNotify',
+    // styling: 'scss'
+  }))
+        
+    } else {
+        
+     PNotify.success({
+     text: 'Не коректное подтверждени пароля',
+    delay: 1000,
+    addClass: 'PNotify',
+    addModalClass: 'PNotify',
+   addModelessClass: 'PNotify',
+    // styling: 'scss'
+  });
+    }
+
+    
+    // sign up the user
+
+   
 })
 
 //logout
@@ -131,7 +205,20 @@ const logout = document.querySelector('#logout');
 
 logout.addEventListener('click', e => {
     e.preventDefault();
+    listQueue.innerHTML = ''
+    listWatched.innerHTML = ''
+    sectionWatched.style.display = 'none'
+    sectionQueue.style.display = 'none'
+    sectionTrend.style.display = 'block'
     obj.auth.signOut()
+    PNotify.success({
+     text: 'Вы покинули свой аккаунт',
+    delay: 1000,
+    addClass: 'PNotify',
+    addModalClass: 'PNotify',
+   addModelessClass: 'PNotify',
+    // styling: 'scss'
+  })
 })
 
 
@@ -152,54 +239,62 @@ loginForm.addEventListener('submit', e => {
         M.Modal.getInstance(modal).close()
         loginForm.reset()
     })
+      PNotify.success({
+     text: 'С возвращением!',
+    delay: 1000,
+    addClass: 'PNotify',
+    addModalClass: 'PNotify',
+   addModelessClass: 'PNotify',
+    // styling: 'scss'
+  })
 })
 
 
 
 let cardsArr = ''
-function removeCard() {
- obj.auth.onAuthStateChanged(user => {
- obj.db.collection("users").doc(user.uid).update({
-    cards: firebase.firestore.FieldValue.arrayRemove(cardsArr)
-  })
-})
-    
-}
-function addToWatched(card) {
-    console.log(cardsArr)
- obj.auth.onAuthStateChanged(user => {
- obj.db.collection("users").doc(user.uid).update({
-    cards: firebase.firestore.FieldValue.arrayUnion(cardsArr)
-})
 
-    })
+function addToQueue() {
+
+ obj.auth.onAuthStateChanged(user => {
+ obj.db.collection("users").doc(user.uid).update({
+     queue: firebase.firestore.FieldValue.arrayUnion(cardsArr)
+      })
+ })
+    PNotify.success({
+       text: 'Картачка добавлена в Queue',
+       delay: 1000,
+       addClass: 'PNotify',
+       addModalClass: 'PNotify',
+       addModelessClass: 'PNotify',
+    // styling: 'scss'
+  });
+
+}
+function addToWatched() {
+     obj.auth.onAuthStateChanged(user => {
+     obj.db.collection("users").doc(user.uid).update({
+     queue: firebase.firestore.FieldValue.arrayRemove(cardsArr),
+     watched: firebase.firestore.FieldValue.arrayUnion(cardsArr),
+    
+  })
+ })
+  PNotify.success({
+       text: 'Картачка добавлена в Watched',
+       delay: 1000,
+       addClass: 'PNotify',
+       addModalClass: 'PNotify',
+       addModelessClass: 'PNotify',
+    // styling: 'scss'
+  });
 
 }
 function getCard(card) {
-    
+   
     cardsArr = card;
     
 }
 
-
-
-//  let qwe =  obj.auth.onAuthStateChanged(user => {
-   
-//    return user.uid
-//  })
-// console.log(qwe())
-
-
-
-// console.log(washingtonRef)
-
-
-
-
-
-
-
-export default {addToWatched,getCard,removeCard}
+export default {addToQueue,getCard,addToWatched}
 
 
 
@@ -220,20 +315,3 @@ export default {addToWatched,getCard,removeCard}
 
  
 
-// create nem guide
-
-// const createForm = document.querySelector('#create-form')
-// createForm.addEventListener('submit', e => {
-//     e.preventDefault();
-//     obj.db.collection('guides').add({
-//         title: createForm['title'].value,
-//         content: createForm['content'].value
-//     }).then(() => {
-//           //close modal and reset form
-//           const modal = document.querySelector('#modal-create')
-//         M.Modal.getInstance(modal).close()
-//         createForm.reset()
-//     }).catch(err => {
-//           console.log(err.messagea)
-//       })
-// })

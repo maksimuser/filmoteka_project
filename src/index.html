@@ -127,6 +127,10 @@
               <label for="signup-password">Choose password</label>
             </div>
             <div class="input-field">
+              <input type="password" id="confirm-password" required />
+              <label for="signup-password">Сonfirm password</label>
+            </div>
+            <div class="input-field">
               <input type="text" id="signup-bio" required />
               <label for="signup-bio">One Line Bio</label>
             </div>
@@ -183,10 +187,10 @@
       <!-- ................................................................. -->
       <!-- Кнопки my library -->
 
-      <!-- <div class="btn-wrapper">
+      <div class="btn-wrapper">
         <button type="button" class="header-btn watched-btn">Watched</button>
         <button type="button" class="header-btn queue-btn">Queue</button>
-      </div> -->
+      </div>
     </header>
 
     <main>
@@ -196,19 +200,30 @@
           <ul class="trend-movies-js trend-items"></ul>
         </div>
       </div>
+           
 
-      <div class="section-my-library" style="display: none">
-        <div class="section-my-library container">
-          <div id="modal-account" class="account-modal">
-            <div class="modal-content center-align">
+      <div id="modal-account" class="section-queue account-modal container" style="display: none">
+        <div class="modal-content center-align">
+
               <h4>My library</h4>
+              <p>Queue</p>
               <br />
               <div class="account-details"></div>
-            </div>
-          </div>
-          <ul class="list-library trend-items"></ul>
+
         </div>
+            <ul class="list-queue trend-items"></ul>
       </div>
+
+      <div id="modal-account" class="section-watched account-modal container" style="display: none">
+        <div class="modal-content center-align">
+          <h4>My library</h4>
+          <p>Watched</p>
+          <br />
+          <div class="account-details"></div>
+        </div>
+        <ul class="list-watched trend-items"></ul>
+      </div>
+          
       <!-- спиннер -->
       <div class="d-flex justify-content-center">
         <div class="loader semipolar-spinner" :style="spinnerStyle">
@@ -235,18 +250,127 @@
         <p class="footer-description">
           © 2021 | All Rights Reserved |
           <span class="">Developed with</span>
-          <svg class="heart-icon" width="13" height="14">
+          <svg class="heart-icon" width="15" height="16">
             <use href="./images/symbol-defs.svg#icon-heart"></use>
           </svg>
 
           <span class="">by</span>
-          <a class="footer-description__link" href="">
+          <a class="footer-description__link" href="" data-action="open-modal">
             <span id="team">GoIT Students</span>
           </a>
         </p>
       </div>
     </footer>
-
+<!-- Модалка для показа участников команды разработчиков -->
+<div class="backdrop-team js-backdrop">
+  <div class="modal-team">
+    <h2 class="team-title">OUR TEAM</h2>
+    <ul class="team-list">
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Maks.jpg" alt="Maksim Dema" width="120" height="120" />
+        <span class="team-name">Maksim Dema</span><br />
+        <span class="team-role">Team Lead</span>
+        <a href="https://github.com/maksimuser">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg></a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Julia_F.jpg" alt="Yulia Feduk" width="120" height="120" />
+        <span class="team-name">Yulia Feduk</span><br />
+        <span class="team-role">Scrum Master</span>
+        <a href="https://github.com/JuliaFedyuk">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Roma.jpg" alt="Roman Nesterenko" width="120" height="120" />
+        <span class="team-name">Roman Nesterenko</span><br />
+        <span class="team-role">Firebase Master</span>
+        <a href="https://github.com/Roman27011986">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Den.jpg" alt="Denis Akimov" width="120" height="120" />
+        <span class="team-name">Denis Akimov</span><br />
+        <span class="team-role">Front End Developer</span>
+        <a href="https://github.com/Den-85-ukr">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Julia_B.jpg" alt="Yulia Bandura" width="120" height="120" />
+        <span class="team-name">Yulia Bandura</span><br />
+        <span class="team-role">Front End Developer</span>
+        <a href="https://github.com/BYuliaL">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Artyom.jpg" alt="Artym Kupits" width="120" height="120" />
+        <span class="team-name">Artym Kupits</span><br />
+        <span class="team-role">Front End Developer</span>
+        <a href="https://github.com/Artyom1910">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Sergey.jpg" alt="Sergey Melnik" width="120" height="120" />
+        <span class="team-name">Sergey Melnik</span><br />
+        <span class="team-role">Front End Developer</span>
+        <a href="https://github.com/Mellsson">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Natali.jpg" alt="Natalia Dashkovska" width="120"
+          height="120" /> 
+        <span class="team-name">Natalia Dashkovska</span><br />
+        <span class="team-role">Front End Developer</span>
+        <a href="https://github.com/NatalyaDashkovska">
+          <svg class="follow-icon" width="25" height="25">
+            <use href="./images/symbol-defs.svg#icon-github"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/nophoto-man.jpg" alt="Andrii Rusan" width="120" height="120" />
+        <span class="team-name">Andrii Rusan</span><br />
+        <span class="team-role">Statist</span>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/cat_1.jpg" alt="Cat#1" width="120" height="120" />
+        <span class="team-name">Mushroom</span><span class="team-role">Senior cat#1</span>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/cat_2.jpg" alt="Cat#2" width="120" height="120" />
+        <span class="team-name">Greyse</span><span class="team-role">Senior cat#2</span>
+      </li>
+      <li class="team-item">
+        <img class="team-image" src="./images/team/Denis.jpg" alt="Denis Hvorostyany" width="120" height="120" />
+        <span class="team-name">Denis Hvorostyany</span><span class="team-role">Den-Mentor :)</span>
+      </li>
+    </ul>
+    <button type="button" class="button-close" data-action="close-modal">
+      <svg class="icon-close">
+        <use href="./images/symbol-defs.svg#icon-form-close-x"></use>
+      </svg>
+    </button>
+  </div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
