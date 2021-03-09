@@ -34,7 +34,7 @@ function openModal(event) {
               instance.close;
               instance.element().querySelector('.modal-box').addEventListener('click',signFn.getCard(filmById))
             instance.element().querySelector('.to-watched').addEventListener('click', signFn.addToWatched)
-            instance.element().querySelector('.add-to-queue').addEventListener('click',signFn.removeCard)
+            instance.element().querySelector('.add-to-queue').addEventListener('click',signFn.addToQueue)
              
 
           },

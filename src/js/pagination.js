@@ -53,8 +53,8 @@ function createPagination(totalPages, page) {
     }
 
     liTag += `<li class="numb paginatorNumb ${active}" data-number='${plength}'><span class="spanNumber">${plength}</span></li>`;
-    console.log(liTag);
-    console.log(plength);
+    // console.log(liTag);
+    // console.log(plength);
   }
 
   if (page < totalPages - 1) {

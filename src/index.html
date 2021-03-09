@@ -127,6 +127,10 @@
               <label for="signup-password">Choose password</label>
             </div>
             <div class="input-field">
+              <input type="password" id="confirm-password" required />
+              <label for="signup-password">Сonfirm password</label>
+            </div>
+            <div class="input-field">
               <input type="text" id="signup-bio" required />
               <label for="signup-bio">One Line Bio</label>
             </div>
@@ -184,10 +188,10 @@
       <!-- ................................................................. -->
       <!-- Кнопки my library -->
 
-      <!-- <div class="btn-wrapper">
+      <div class="btn-wrapper">
         <button type="button" class="header-btn watched-btn">Watched</button>
         <button type="button" class="header-btn queue-btn">Queue</button>
-      </div> -->
+      </div>
     </header>
 
     <main>
@@ -197,18 +201,30 @@
           <ul class="trend-movies-js trend-items"></ul>
         </div>
       </div>
+      
 
+     
 
-      <div class="section-my-library " style="display: none">
-        <div class="section-my-library container">
-          <div id="modal-account" class="account-modal" >
-            <div class="modal-content center-align">
+      <div id="modal-account" class="section-queue account-modal container" style="display: none">
+        <div class="modal-content center-align">
               <h4>My library</h4>
+              <p>Queue</p>
               <br />
               <div class="account-details"></div>
-            </div>
-            </div>
-          <ul class="list-library trend-items"></ul>
+        </div>
+            <ul class="list-queue trend-items"></ul>
+      </div>
+
+      <div id="modal-account" class="section-watched account-modal container" style="display: none">
+        <div class="modal-content center-align">
+          <h4>My library</h4>
+          <p>Watched</p>
+          <br />
+          <div class="account-details"></div>
+        </div>
+        <ul class="list-watched trend-items"></ul>
+      </div>
+          
 
       <!-- спиннер -->
       <div class="d-flex justify-content-center">
@@ -218,7 +234,6 @@
           <div class="ring"></div>
           <div class="ring"></div>
           <div class="ring"></div>
-
         </div>
       </div>
     </main>
