@@ -29,7 +29,7 @@
 }
 
 .modal-section-img {
-  display: flex;
+  // display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -85,6 +85,7 @@
     @media screen and (min-width: 768px) {
       font-size: 30px;
       line-height: 1.17;
+      margin-top: 0px;
     }
   }
 
@@ -190,35 +191,20 @@
       text-transform: uppercase;
       border-radius: 5px;
 
+      color: #000000;
+      border: 1px solid #000000;
+      background-color: #ffffff;
+      // border: none;
       @media screen and (min-width: 1024px) {
         max-width: 136px;
       }
-
-      &:nth-child(1) {
-        margin-right: 15px;
+      &:hover {
         color: #ffffff;
         background-color: #ff6b08;
-        border: none;
-
-        &:hover {
-          color: #000000;
-          border: 1px solid #000000;
-          background-color: #ffffff;
-        }
+        border: 1px solid transparent;
       }
-
-      &:nth-child(2) {
-        color: #000000;
-        border: 1px solid #000000;
-        background-color: #ffffff;
-
-        &:hover {
-          margin-right: 15px;
-          color: #ffffff;
-          background-color: #ff6b08;
-
-          border: 1px solid transparent;
-        }
+      &:nth-child(1) {
+        margin-right: 15px;
       }
     }
   }
@@ -246,4 +232,12 @@
   background-position: center;
   background-size: 60%;
   background-repeat: no-repeat;
+}
+.basicLightbox--visible {
+  align-items: flex-start;
+  overflow: scroll;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

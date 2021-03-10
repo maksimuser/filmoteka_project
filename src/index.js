@@ -1,6 +1,7 @@
+import './js/modal';
 import './sass/styles.scss';
 import './js/refs';
-import './js/modal';
+
 import './js/auth';
 import './js/sign-up';
 import './js/input-service';
