@@ -10,7 +10,6 @@
     url(../images/mobile/Rectangle@2x.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 50px;
 }
 
 .search-icon {
@@ -27,15 +26,13 @@
   line-height: 1.1;
 }
 
-.logo-span {
-  margin-top: 46px;
-}
-
 .logo-wrapper {
   display: flex;
   justify-content: space-between;
   margin-right: auto;
   align-items: flex-end;
+  padding-top: 41px;
+  padding-bottom: 57px;
 }
 
 .logo-name {
@@ -44,9 +41,8 @@
 
 .header-navigation {
   display: flex;
-  margin-top: 46px;
   list-style: none;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .navigation-link {
@@ -131,7 +127,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .search-form {
   text-align: center;
-  margin-top: 58px;
 }
 
 .search-icon {
@@ -145,7 +140,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .logo-link {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+}
+
+.logo-span {
+  display: flex;
+  align-items: flex-end;
 }
 
 .current::after {
@@ -177,6 +177,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
     display: block;
     font-size: 30px;
     color: $white-color;
+    margin-bottom: -10px;
   }
 
   .logo {

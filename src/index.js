@@ -13,6 +13,7 @@ import apiService from './js/api-service';
 import updateTrendMarkup from './js/update-markup';
 import inputService from './js/input-service';
 import debounce from 'lodash.debounce';
+import lightbox from './js/modal-team';
 
 apiService.fetchTrendMovie().then(trendMovies => {
   updateTrendMarkup(trendMovies);
@@ -43,3 +44,5 @@ searchInput.addEventListener(
     }
   }, 1500),
 );
+
+lightbox();
