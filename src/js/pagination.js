@@ -41,6 +41,7 @@ export default function createPagination(totalPages, page) {
     afterPage = afterPage + 1;
   }
   for (let plength = beforePage; plength <= afterPage; plength++) {
+
     if (plength > totalPages) {
       continue;
     }
@@ -73,7 +74,9 @@ export default function createPagination(totalPages, page) {
 }
 element.addEventListener('click', event => {
   if (event.target.className.includes('paginatorNumb')) {
+
     page = Number(event.target.dataset.number);
+
   } else if (event.target.className.includes('paginatorFirst')) {
     page = 1;
   } else if (event.target.className.includes('paginatorPrev')) {
