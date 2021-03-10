@@ -20,6 +20,11 @@ apiService.fetchTrendMovie().then(trendMovies => {
 const searchInput = document.querySelector('.js-input');
 const movieContainer = document.querySelector('.trend-movies-js');
 const spinnerRef = document.querySelector('.loader');
+const homeRef = document.querySelector('.navigation-link-home');
+const library = document.querySelector('.navigation-link-library');
+
+library.classList.remove('current');
+homeRef.classList.add('current');
 
 spinnerRef.hidden = true;
 

@@ -58,8 +58,11 @@
           </span>
 
           <ul id="nav-mobile" class="header-navigation">
-            <li class="navigation-item current home">
-              <a href="#" class="navigation-link" data-target="modal-account"
+            <li class="navigation-item home">
+              <a
+                href="#"
+                class="navigation-link navigation-link-home"
+                data-target="modal-account"
                 >Home</a
               >
             </li>
@@ -69,7 +72,7 @@
             <li class="navigation-item logged-in" style="display: none">
               <a
                 href=""
-                class="navigation-link modal-trigger"
+                class="navigation-link modal-trigger navigation-link-library"
                 data-target="modal-account"
                 data-link="library-link"
                 >My library</a
@@ -229,7 +232,7 @@
 
       <!-- спиннер -->
       <div class="d-flex justify-content-center">
-        <div class="loader semipolar-spinner" :style="spinnerStyle">
+        <div class="loader semipolar-spinner">
           <div class="ring"></div>
           <div class="ring"></div>
           <div class="ring"></div>
