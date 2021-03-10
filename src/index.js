@@ -5,7 +5,7 @@ import './js/refs';
 import './js/auth';
 import './js/sign-up';
 import './js/input-service';
-import './js/modal-team';
+// import './js/modal-team';
 
 import './js/pagination';
 
@@ -13,7 +13,9 @@ import apiService from './js/api-service';
 import updateTrendMarkup from './js/update-markup';
 import inputService from './js/input-service';
 import debounce from 'lodash.debounce';
-import lightbox from './js/modal-team';
+// import lightbox from './js/modal-team';
+import MicroModal from 'micromodal';
+MicroModal.init();
 
 apiService.fetchTrendMovie().then(trendMovies => {
   updateTrendMarkup(trendMovies);
@@ -45,4 +47,4 @@ searchInput.addEventListener(
   }, 1500),
 );
 
-lightbox();
+// lightbox();
