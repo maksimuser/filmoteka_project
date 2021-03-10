@@ -41,7 +41,6 @@ export default function createPagination(totalPages, page) {
     afterPage = afterPage + 1;
   }
   for (let plength = beforePage; plength <= afterPage; plength++) {
-    console.log(plength);
     if (plength > totalPages) {
       continue;
     }
@@ -54,9 +53,8 @@ export default function createPagination(totalPages, page) {
       active = '';
     }
     liTag += `<li class="numb paginatorNumb ${active}" data-number='${plength}'><span class="spanNumber">${plength}</span></li>`;
-    // console.log(liTag);
-    // console.log(plength);
   }
+
   if (page < totalPages - 1) {
     if (page < totalPages - 2) {
       liTag += `<li class="dots"><span>...</span></li>`;
@@ -76,7 +74,6 @@ export default function createPagination(totalPages, page) {
 element.addEventListener('click', event => {
   if (event.target.className.includes('paginatorNumb')) {
     page = Number(event.target.dataset.number);
-    console.log(event.target.dataset.number);
   } else if (event.target.className.includes('paginatorFirst')) {
     page = 1;
   } else if (event.target.className.includes('paginatorPrev')) {
