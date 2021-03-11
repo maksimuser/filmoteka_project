@@ -6,8 +6,6 @@ import signFn from '../js/library-api';
 const key = `ebb87b3c3ccf067a0867ba65db09dab4`;
 const filmCard = document.querySelector(`.trend-items`);
 let mas = {};
-
-
 const findMovieById = idNum => {
   return fetch(
     `https://api.themoviedb.org/3/movie/${idNum}?api_key=${key}&language=en-US`,
@@ -66,7 +64,7 @@ const openModal = event => {
   }
 
   const idNum = event.target.dataset.src;
-  document.querySelector(`body`).classList.add(`no-scroll`);
+  document.querySelector(`.body`).classList.add(`no-scroll`);
   findMovieById(idNum);
   window.addEventListener('keydown', modalClose);
 };
@@ -81,7 +79,7 @@ const closeByEsc = event => {
   window.removeEventListener('keydown', modalClose);
   const lightBoxWindow = document.querySelector(`.basicLightbox`);
   const removeWindow = function (elem) {
-    document.querySelector(`body`).classList.remove(`no-scroll`);
+    document.querySelector(`.body`).classList.remove(`no-scroll`);
     elem.classList.remove('basicLightbox--visible');
     elem.parentElement.removeChild(elem);
     return;
@@ -99,10 +97,10 @@ const closeOnBgn = event => {
     const removeWindow = function (elem) {
       elem.classList.remove('basicLightbox--visible');
 
-      document.querySelector(`body`).classList.remove(`no-scroll`);
+      document.querySelector(`.body`).classList.remove(`no-scroll`);
       window.removeEventListener('keydown', modalClose);
 
-      return;
+      // return;
     };
     removeWindow(lightBoxWindow);
   });

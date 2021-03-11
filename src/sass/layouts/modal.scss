@@ -233,11 +233,19 @@
   background-size: 60%;
   background-repeat: no-repeat;
 }
-.basicLightbox--visible {
-  align-items: flex-start;
-  overflow: scroll;
-}
 
 .no-scroll {
   overflow: hidden;
+}
+
+.basicLightbox--visible {
+  overflow: scroll;
+
+  @media screen and (min-width: 320px) {
+    align-items: flex-start;
+  }
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
 }
