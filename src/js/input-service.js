@@ -15,10 +15,16 @@ const logoRef = document.querySelector('.logo-link');
 const homeRef = document.querySelector('.navigation-link-home');
 const library = document.querySelector('.navigation-link-library');
 const element = document.querySelector('.pagination ul');
+const logout = document.querySelector('#logout');
+
+logout.addEventListener('click', event => {
+  formRef.hidden = false;
+  homeRef.classList.add('current');
+  library.classList.remove('current');
+});
 
 library.addEventListener('click', event => {
-  console.log(event.target);
-
+  formRef.hidden = true;
   homeRef.classList.remove('current');
   library.classList.add('current');
 });
@@ -32,6 +38,12 @@ logoRef.addEventListener('click', goHome);
 
 function goHome() {
   element.hidden = false;
+  formRef.hidden = false;
+
+  homeRef.classList.add('current');
+  library.classList.remove('current');
+
+  apiService.resetPage();
 
   apiService.fetchTrendMovie().then(trendMovies => {
     movieContainer.innerHTML = '';
@@ -50,9 +62,11 @@ export default {
 
       const dataVal = inputVal.data.results;
 
-      // if (apiService.totalPages <= 1) {
-      //   element.hidden = true;
-      // }
+      if (apiService.totalPages <= 1) {
+        element.hidden = true;
+      } else {
+        element.hidden = false;
+      }
 
       if (!dataVal.length) {
         error({

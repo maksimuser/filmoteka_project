@@ -4,13 +4,14 @@ const apiKey = 'ebb87b3c3ccf067a0867ba65db09dab4';
 
 export default {
   totalPages: 0,
+  page: 1,
 
-  async fetchTrendMovie(page = 1) {
-    axios.defaults.baseURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`;
+  async fetchTrendMovie() {
+    axios.defaults.baseURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${this.page}`;
     try {
       const resTrend = await axios.get();
       this.totalPages = resTrend.data.total_pages;
-      createPagination(this.totalPages, page);
+      createPagination(this.totalPages, this.page);
 
       if (resTrend.status !== 200) {
         throw new Error('error');
@@ -35,6 +36,10 @@ export default {
       .then(({ genres }) => {
         return data.map(
           ({ release_date, poster_path, title, id, media_type, genre_ids }) => {
+            if (!release_date) {
+              return;
+            }
+
             release_date = release_date.slice(0, 4);
 
             genre_ids.forEach((el, index) => {
@@ -67,5 +72,9 @@ export default {
     if (screen.availWidth >= 768 && screen.availWidth <= 1023) {
       data.length = 8;
     }
+  },
+
+  resetPage() {
+    this.page = 1;
   },
 };
