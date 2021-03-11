@@ -5,7 +5,8 @@ import './js/auth';
 import './js/sign-up';
 import './js/input-service';
 import './js/modal-team';
-
+import './js/changes-st';
+import './js/library-api';
 import './js/pagination';
 
 

@@ -93,7 +93,8 @@
             </li>
           </ul>
         </div>
-
+        
+        <div class="account-details navigation-item" style="display: none"></div>
         <form class="search-form" id="search-form">
           <input
             class="search-input js-input"
@@ -110,6 +111,7 @@
         </form>
 
         <div id="example-note"></div>
+        
       </div>
       <!-- ........................................................... -->
       <!-- SIGN UP MODAL -->
@@ -132,7 +134,7 @@
             </div>
             <div class="input-field">
               <input type="text" id="signup-bio" required />
-              <label for="signup-bio">One Line Bio</label>
+              <label for="signup-bio">Name</label>
             </div>
             <button class="btn yellow darken-2 z-depth-0">Sign up</button>
           </form>
@@ -158,33 +160,10 @@
         </div>
       </div>
 
-      <!-- ACCOUNT MODAL -->
+      
+   
 
-      <!-- CREATE GUIDE MODAL -->
-      <!-- <div id="modal-create" class="modal">
-  <div class="modal-content">
-    <h4>Create Guide</h4><br />
-    <form id="create-form">
-      <div class="input-field">
-        <input type="text" id="title" required>
-        <label for="title">Guide Title</label>
-      </div>
-      <div class="input-field">
-        <textarea id="content" class="materialize-textarea" required></textarea>
-        <label for="content">Guide Content</label>
-      </div>
-      <button class="btn yellow darken-2 z-depth-0">Create</button>
-    </form>
-  </div>
-</div> -->
-      <!-- GUIDE LIST -->
-      <div class="container" style="margin-top: 40px">
-        <ul class="collapsible z-depth-0 guides" style="border: none">
-          style="display: none"
-        </ul>
-      </div>
-
-      <!-- ................................................................. -->
+      
       <!-- Кнопки my library -->
 
       <div class="btn-wrapper">
@@ -202,25 +181,11 @@
       </div>
            
 
-      <div id="modal-account" class="section-queue account-modal container" style="display: none">
-        <div class="modal-content center-align">
-
-              <h4>My library</h4>
-              <p>Queue</p>
-              <br />
-              <div class="account-details"></div>
-
-        </div>
-            <ul class="list-queue trend-items"></ul>
+      <div id="modal-account" class="section-queue  container" style="display: none">
+        <ul class="list-queue trend-items"></ul>
       </div>
 
-      <div id="modal-account" class="section-watched account-modal container" style="display: none">
-        <div class="modal-content center-align">
-          <h4>My library</h4>
-          <p>Watched</p>
-          <br />
-          <div class="account-details"></div>
-        </div>
+      <div id="modal-account" class="section-watched  container" style="display: none">
         <ul class="list-watched trend-items"></ul>
       </div>
           
