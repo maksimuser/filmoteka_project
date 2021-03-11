@@ -84,66 +84,30 @@
   color: $white-color;
   margin-bottom: 97px;
   font-size: 18px;
-  // width: 280px;
-  // border: 0.5px solid #ffffff;
+
   border-bottom: 1px solid #9e9e9e;
 }
 
-input:not([type]),
-input[type='text']:not(.browser-default),
-input[type='password']:not(.browser-default),
-input[type='email']:not(.browser-default),
-input[type='url']:not(.browser-default),
-input[type='time']:not(.browser-default),
-input[type='date']:not(.browser-default),
-input[type='datetime']:not(.browser-default),
-input[type='datetime-local']:not(.browser-default),
-input[type='tel']:not(.browser-default),
-input[type='number']:not(.browser-default),
-input[type='search']:not(.browser-default),
-textarea.materialize-textarea .search-input {
+.search-form .search-input.js-input {
   width: 240px;
-  border-bottom: 1px solid #9e9e9e;
+  margin: 0;
+  font-size: 16px;
+  height: 25px;
 }
 
-@media screen and (min-width: 768px) {
-  input:not([type]),
-  input[type='text']:not(.browser-default),
-  input[type='password']:not(.browser-default),
-  input[type='email']:not(.browser-default),
-  input[type='url']:not(.browser-default),
-  input[type='time']:not(.browser-default),
-  input[type='date']:not(.browser-default),
-  input[type='datetime']:not(.browser-default),
-  input[type='datetime-local']:not(.browser-default),
-  input[type='tel']:not(.browser-default),
-  input[type='number']:not(.browser-default),
-  input[type='search']:not(.browser-default),
-  textarea.materialize-textarea .search-input {
-    width: 380px;
-    border-bottom: 1px solid #9e9e9e;
-  }
-}
-
-input:not([type]):focus:not([readonly]),
-input[type='text']:not(.browser-default):focus:not([readonly]),
-input[type='password']:not(.browser-default):focus:not([readonly]),
-input[type='email']:not(.browser-default):focus:not([readonly]),
-input[type='url']:not(.browser-default):focus:not([readonly]),
-input[type='time']:not(.browser-default):focus:not([readonly]),
-input[type='date']:not(.browser-default):focus:not([readonly]),
-input[type='datetime']:not(.browser-default):focus:not([readonly]),
-input[type='datetime-local']:not(.browser-default):focus:not([readonly]),
-input[type='tel']:not(.browser-default):focus:not([readonly]),
-input[type='number']:not(.browser-default):focus:not([readonly]),
-input[type='search']:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) .search-input {
+#search-form .search-input:focus {
   border-bottom: 1px solid $orange-color;
   -webkit-box-shadow: 0 1px 0 0 $orange-color;
   box-shadow: 0 1px 0 0 $orange-color;
 }
+@media screen and (min-width: 768px) {
+  .search-form .search-input.js-input {
+    width: 380px;
+  }
+}
 
 .search-form {
+  padding-top: 35px;
   text-align: center;
 }
 
@@ -252,13 +216,6 @@ textarea.materialize-textarea:focus:not([readonly]) .search-input {
   fill: $white-color;
   margin-top: 20px;
   right: 50px;
-}
-
-.loged-icon {
-  position: absolute;
-  fill: $white-color;
-  margin-top: 20px;
-  right: 20px;
 }
 
 .account-details.navigation-item {
