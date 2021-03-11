@@ -28,6 +28,10 @@ const spinnerRef = document.querySelector('.loader');
 const homeRef = document.querySelector('.navigation-link-home');
 const library = document.querySelector('.navigation-link-library');
 const formRef = document.querySelector('.search-form');
+const header = document.querySelector('.page-header');
+
+header.classList.add('page-bg-home');
+// header.classList.remove('page-bg-lib');
 
 library.classList.remove('current');
 homeRef.classList.add('current');

@@ -2,17 +2,29 @@
   z-index: 1;
   left: 0;
   right: 0;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 230px;
+}
+
+.page-bg-home {
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.56),
       rgba(0, 0, 0, 0.56)
     ),
     url(../images/mobile/Rectangle@2x.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+}
 
-  height: 230px;
-
+.page-bg-lib {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/mobile/fRectangle@2x.jpg);
 }
 
 .search-icon {
@@ -35,7 +47,7 @@
   margin-right: auto;
   align-items: flex-end;
   padding-top: 41px;
-  padding-bottom: 57px;
+  padding-bottom: 12px;
 }
 
 .logo-name {
@@ -89,7 +101,7 @@ input[type='datetime-local']:not(.browser-default),
 input[type='tel']:not(.browser-default),
 input[type='number']:not(.browser-default),
 input[type='search']:not(.browser-default),
-textarea.materialize-textarea {
+textarea.materialize-textarea .search-input {
   width: 240px;
   border-bottom: 1px solid #9e9e9e;
 }
@@ -107,7 +119,7 @@ textarea.materialize-textarea {
   input[type='tel']:not(.browser-default),
   input[type='number']:not(.browser-default),
   input[type='search']:not(.browser-default),
-  textarea.materialize-textarea {
+  textarea.materialize-textarea .search-input {
     width: 380px;
     border-bottom: 1px solid #9e9e9e;
   }
@@ -125,7 +137,7 @@ input[type='datetime-local']:not(.browser-default):focus:not([readonly]),
 input[type='tel']:not(.browser-default):focus:not([readonly]),
 input[type='number']:not(.browser-default):focus:not([readonly]),
 input[type='search']:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) {
+textarea.materialize-textarea:focus:not([readonly]) .search-input {
   border-bottom: 1px solid $orange-color;
   -webkit-box-shadow: 0 1px 0 0 $orange-color;
   box-shadow: 0 1px 0 0 $orange-color;
@@ -165,13 +177,23 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 @media screen and (min-width: 768px) {
-  .page-header {
+  .page-bg-home {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
       url(../images/tablet/Rectangle@2x.jpg);
+    background-position: center;
+  }
+
+  .page-bg-lib {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/tablet/fRectangle@2x.jpg);
     background-position: center;
   }
 
@@ -196,13 +218,23 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 @media screen and (min-width: 1024px) {
-  .page-header {
+  .page-bg-home {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
       url(../images/desktop/Rectangle@2x.jpg);
+    background-position: center;
+  }
+
+  .page-bg-lib {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/desktop/fRectangle@2x.jpg);
     background-position: center;
   }
 
@@ -227,4 +259,23 @@ textarea.materialize-textarea:focus:not([readonly]) {
   fill: $white-color;
   margin-top: 20px;
   right: 20px;
+}
+
+.account-details.navigation-item {
+  display: block;
+  text-align: end;
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
+#modal-account {
+  padding-top: 60px;
+}
+
+.header-btn:focus {
+  background-color: $orange-color;
+}
+
+.header-btn:hover {
+  background-color: $orange-color;
 }
