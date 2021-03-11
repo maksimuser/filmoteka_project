@@ -16,17 +16,24 @@ const homeRef = document.querySelector('.navigation-link-home');
 const library = document.querySelector('.navigation-link-library');
 const element = document.querySelector('.pagination ul');
 const logout = document.querySelector('#logout');
+const header = document.querySelector('.page-header');
+const spinnerRef = document.querySelector('.loader');
 
 logout.addEventListener('click', event => {
   formRef.hidden = false;
   homeRef.classList.add('current');
   library.classList.remove('current');
+  header.classList.add('page-bg-home');
+  header.classList.remove('page-bg-lib');
 });
 
 library.addEventListener('click', event => {
+  spinnerRef.hidden = true;
   formRef.hidden = true;
   homeRef.classList.remove('current');
   library.classList.add('current');
+  header.classList.remove('page-bg-home');
+  header.classList.add('page-bg-lib');
 });
 
 formRef.addEventListener('submit', event => {
@@ -39,6 +46,9 @@ logoRef.addEventListener('click', goHome);
 function goHome() {
   element.hidden = false;
   formRef.hidden = false;
+
+  header.classList.add('page-bg-home');
+  header.classList.remove('page-bg-lib');
 
   homeRef.classList.add('current');
   library.classList.remove('current');
