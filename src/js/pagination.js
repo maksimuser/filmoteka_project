@@ -8,10 +8,44 @@ const searchInput = document.querySelector('.js-input');
 import inputService from './input-service';
 const element = document.querySelector('.pagination ul');
 
-let totalPages = 30;
+let totalPages = 0;
 let page = 1;
 
 element.innerHTML = createPagination(totalPages, page);
+
+element.addEventListener('click', event => {
+  const inputValue = searchInput.value;
+  if (event.target.className.includes('paginatorNumb')) {
+    page = Number(event.target.dataset.number);
+  } else if (event.target.className.includes('paginatorFirst')) {
+    page = 1;
+  } else if (event.target.className.includes('paginatorPrev')) {
+    page = page - 1;
+  } else if (event.target.className.includes('paginatorLast')) {
+    page = apiService.totalPages;
+  } else if (event.target.className.includes('paginatorNext')) {
+    page = page + 1;
+  }
+
+  if (!inputValue) {
+    apiService.fetchTrendMovie(page).then(trendMovies => {
+      refs.movies.innerHTML = '';
+      // createPagination(totalPages, page);
+      updateTrendMarkup(trendMovies);
+      window.scrollTo(0, 0);
+      return;
+    });
+  } else {
+    inputService.fetchInputMovie(inputValue, page).then(trendMovies => {
+      movieContainer.innerHTML = '';
+      // createPagination(totalPages, page);
+      updateTrendMarkup(trendMovies);
+      window.scrollTo(0, 0);
+      return;
+    });
+  }
+});
+
 export default function createPagination(totalPages, page) {
   let liTag = '';
   let active;
@@ -41,7 +75,6 @@ export default function createPagination(totalPages, page) {
     afterPage = afterPage + 1;
   }
   for (let plength = beforePage; plength <= afterPage; plength++) {
-    console.log(plength);
     if (plength > totalPages) {
       continue;
     }
@@ -54,9 +87,8 @@ export default function createPagination(totalPages, page) {
       active = '';
     }
     liTag += `<li class="numb paginatorNumb ${active}" data-number='${plength}'><span class="spanNumber">${plength}</span></li>`;
-    // console.log(liTag);
-    // console.log(plength);
   }
+
   if (page < totalPages - 1) {
     if (page < totalPages - 2) {
       liTag += `<li class="dots"><span>...</span></li>`;
@@ -73,39 +105,3 @@ export default function createPagination(totalPages, page) {
   element.innerHTML = liTag;
   return liTag;
 }
-element.addEventListener('click', event => {
-  //   console.log(event.target.className);
-  if (event.target.className.includes('paginatorNumb')) {
-    page = event.target.dataset.number;
-    console.log(event.target.dataset.number);
-  } else if (event.target.className.includes('paginatorFirst')) {
-    page = 1;
-  } else if (event.target.className.includes('paginatorPrev')) {
-    page = page - 1;
-  } else if (event.target.className.includes('paginatorLast')) {
-    page = totalPages;
-  } else if (event.target.className.includes('paginatorNext')) {
-    page = Number(page) + 1;
-    // console.log(page);
-    // console.log(event.target.className);
-  }
-  // createPagination(totalPages, page);
-  const inputValue = searchInput.value;
-  if (!inputValue) {
-    apiService.fetchTrendMovie(page).then(trendMovies => {
-      refs.movies.innerHTML = '';
-      createPagination(totalPages, page);
-      updateTrendMarkup(trendMovies);
-      window.scrollTo(0, 0);
-      return;
-    });
-  } else {
-    inputService.fetchInputMovie(inputValue, page).then(trendMovies => {
-      movieContainer.innerHTML = '';
-      createPagination(totalPages, page);
-      updateTrendMarkup(trendMovies);
-      window.scrollTo(0, 0);
-      return;
-    });
-  }
-});

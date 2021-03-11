@@ -1,11 +1,16 @@
 import axios from 'axios';
+import createPagination from './pagination';
 const apiKey = 'ebb87b3c3ccf067a0867ba65db09dab4';
 
 export default {
+  totalPages: 0,
+
   async fetchTrendMovie(page = 1) {
     axios.defaults.baseURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`;
     try {
       const resTrend = await axios.get();
+      this.totalPages = resTrend.data.total_pages;
+      createPagination(this.totalPages, page);
 
       if (resTrend.status !== 200) {
         throw new Error('error');
@@ -22,13 +27,13 @@ export default {
     }
   },
 
-  requestParamTrend(dataTrend) {
+  requestParamTrend(data) {
     return fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`,
     )
       .then(res => res.json())
       .then(({ genres }) => {
-        return dataTrend.map(
+        return data.map(
           ({ release_date, poster_path, title, id, media_type, genre_ids }) => {
             release_date = release_date.slice(0, 4);
 
@@ -54,15 +59,13 @@ export default {
       });
   },
 
-  getAvailWidth(dataTrend) {
-    dataTrend.length = 9;
+  getAvailWidth(data) {
+    data.length = 9;
     if (screen.availWidth < 767) {
-      dataTrend.length = 4;
-      console.log(dataTrend.length);
+      data.length = 4;
     }
     if (screen.availWidth >= 768 && screen.availWidth <= 1023) {
-      dataTrend.length = 8;
-      console.log(dataTrend.length);
+      data.length = 8;
     }
   },
 };

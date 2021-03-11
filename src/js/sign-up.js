@@ -1,3 +1,4 @@
+
 import obj from './auth'
 
 // import "firebase/auth";
@@ -9,9 +10,11 @@ import obj from './auth'
 // import openModal from '../js/modal'
 // import { log } from 'handlebars';
 
+
 import * as PNotify from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
+
 import  ref  from './refs'
 
 
@@ -60,7 +63,9 @@ class User {
 }
 
 
+
 let currentUser = null
+
 
 ref.signupForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -99,4 +104,5 @@ ref.signupForm.addEventListener('submit', e => {
 
 
  
+
 
