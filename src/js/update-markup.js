@@ -5,6 +5,7 @@ const refs = {
 };
 
 function updateTrendMarkup(trendMovies) {
+  console.log(trendMovies)
   const markup = trendMoviesMarkup(trendMovies);
 
   refs.movies.insertAdjacentHTML('beforeend', markup);

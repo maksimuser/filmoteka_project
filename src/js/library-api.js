@@ -4,7 +4,9 @@ import * as PNotify from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 import firebase from 'firebase/app';
-
+ref.movies.addEventListener('click', e => {
+  console.log(e.target)
+})
 ref.homeLinkRef.addEventListener('click', toExitLibrary);
 ref.btnWatched.addEventListener('click', addSecWatched);
 function addSecWatched() {
@@ -67,6 +69,7 @@ ref.loginForm.addEventListener('submit', e => {
 
 let cardsArr = '';
 
+ 
 function addToQueue() {
   obj.auth.onAuthStateChanged(user => {
     obj.db

@@ -69,3 +69,5 @@ ref.signupForm.addEventListener('submit', e => {
   currentUser = new User(email, password, confirmPassword);
   currentUser.createUser();
 });
+
+
