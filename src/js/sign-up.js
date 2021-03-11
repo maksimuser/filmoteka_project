@@ -13,6 +13,9 @@ import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 
 import ref from './refs';
+// import * as PNotifyMobile from '@pnotify/mobile';
+
+// defaultModules.set(PNotifyMobile, {});
 
 class User {
   constructor(email, password, confirmPassword) {
