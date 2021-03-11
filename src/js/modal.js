@@ -1,22 +1,29 @@
 import modal from '../templates/main-modal.hbs';
 import * as BasicLightBox from 'basiclightbox';
 import 'basiclightbox/src/styles/main.scss';
-import signFn from '../js/sign-up';
+
+import signFn from '../js/library-api';
 const key = `ebb87b3c3ccf067a0867ba65db09dab4`;
 const filmCard = document.querySelector(`.trend-items`);
-let filmById = {};
+let mas = {};
+
+
 const findMovieById = idNum => {
   return fetch(
     `https://api.themoviedb.org/3/movie/${idNum}?api_key=${key}&language=en-US`,
   )
     .then(res => res.json())
     .then(filmById => {
+
+      mas = filmById;
+
       const formModal = modal(filmById);
       createModal(formModal);
     })
     .catch(error => console.log(error));
 };
-const createModal = event => {
+
+const createModal = (event, filmById) => {
   const instance = BasicLightBox.create(
     `${event}
 
@@ -30,7 +37,9 @@ const createModal = event => {
         instance
           .element()
           .querySelector('.modal-box')
-          .addEventListener('click', signFn.getCard(filmById));
+
+          .addEventListener('click', signFn.getCard(mas));
+
         instance
           .element()
           .querySelector('.to-watched')
@@ -59,7 +68,6 @@ const openModal = event => {
   const idNum = event.target.dataset.src;
   document.querySelector(`body`).classList.add(`no-scroll`);
   findMovieById(idNum);
-
   window.addEventListener('keydown', modalClose);
 };
 
@@ -101,3 +109,4 @@ const closeOnBgn = event => {
 };
 
 export default openModal;
+
