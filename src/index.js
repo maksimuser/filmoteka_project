@@ -27,15 +27,18 @@ const movieContainer = document.querySelector('.trend-movies-js');
 const spinnerRef = document.querySelector('.loader');
 const homeRef = document.querySelector('.navigation-link-home');
 const library = document.querySelector('.navigation-link-library');
+const formRef = document.querySelector('.search-form');
 
 library.classList.remove('current');
 homeRef.classList.add('current');
 
 spinnerRef.hidden = true;
+formRef.hidden = false;
 
 searchInput.addEventListener(
   'input',
   debounce(() => {
+    apiService.resetPage();
     const inputValue = searchInput.value.trim();
     if (inputValue) {
       movieContainer.innerHTML = '';

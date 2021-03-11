@@ -10,7 +10,9 @@
     url(../images/mobile/Rectangle@2x.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+
   height: 230px;
+
 }
 
 .search-icon {
@@ -54,9 +56,12 @@
   color: $white-color;
 }
 
+.navigation-item {
+  position: relative;
+}
+
 .navigation-item:first-child {
   margin-right: 39px;
-  position: relative;
 }
 
 .search-input {

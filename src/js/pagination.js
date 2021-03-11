@@ -8,27 +8,29 @@ const searchInput = document.querySelector('.js-input');
 import inputService from './input-service';
 const element = document.querySelector('.pagination ul');
 
-let totalPages = 0;
-let page = 1;
+// let totalPages = 0;
+// let page = 1;
 
-element.innerHTML = createPagination(totalPages, page);
+// element.innerHTML = createPagination(totalPages, page);
 
 element.addEventListener('click', event => {
+  apiService.totalPages;
+  apiService.page;
   const inputValue = searchInput.value;
   if (event.target.className.includes('paginatorNumb')) {
-    page = Number(event.target.dataset.number);
+    apiService.page = Number(event.target.dataset.number);
   } else if (event.target.className.includes('paginatorFirst')) {
-    page = 1;
+    apiService.page = 1;
   } else if (event.target.className.includes('paginatorPrev')) {
-    page = page - 1;
+    apiService.page = apiService.page - 1;
   } else if (event.target.className.includes('paginatorLast')) {
-    page = apiService.totalPages;
+    apiService.page = apiService.totalPages;
   } else if (event.target.className.includes('paginatorNext')) {
-    page = page + 1;
+    apiService.page = apiService.page + 1;
   }
 
   if (!inputValue) {
-    apiService.fetchTrendMovie(page).then(trendMovies => {
+    apiService.fetchTrendMovie(apiService.page).then(trendMovies => {
       refs.movies.innerHTML = '';
       // createPagination(totalPages, page);
       updateTrendMarkup(trendMovies);
@@ -36,13 +38,15 @@ element.addEventListener('click', event => {
       return;
     });
   } else {
-    inputService.fetchInputMovie(inputValue, page).then(trendMovies => {
-      movieContainer.innerHTML = '';
-      // createPagination(totalPages, page);
-      updateTrendMarkup(trendMovies);
-      window.scrollTo(0, 0);
-      return;
-    });
+    inputService
+      .fetchInputMovie(inputValue, apiService.page)
+      .then(trendMovies => {
+        movieContainer.innerHTML = '';
+        // createPagination(totalPages, page);
+        updateTrendMarkup(trendMovies);
+        window.scrollTo(0, 0);
+        return;
+      });
   }
 });
 
