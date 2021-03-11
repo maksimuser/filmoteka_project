@@ -35,9 +35,7 @@ const createModal = (event, filmById) => {
         instance
           .element()
           .querySelector('.modal-box')
-
           .addEventListener('click', signFn.getCard(mas));
-
         instance
           .element()
           .querySelector('.to-watched')

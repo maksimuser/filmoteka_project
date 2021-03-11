@@ -4,7 +4,8 @@ import obj from './auth'
 // import "firebase/firestore";
 // import "firebase/analytics";
 // import "firebase/firestore";
-import trendMoviesMarkup from '../templates/trend-movies.hbs';
+// import trendMoviesMarkup from '../templates/trend-movies.hbs';
+import trendMoviesMarkup from '../templates/library.hbs';
 import ref from './refs'
 import openModal from '../js/modal'
 
@@ -53,6 +54,7 @@ const setupUI = user => {
 const setupCards = (dataQueue,dataWatched) => {
      
     if (dataQueue) {
+        
         let markupQueue = ''
         let markupWatched = ''
         markupQueue = trendMoviesMarkup(dataQueue);
