@@ -31,3 +31,7 @@ body {
   font-style: normal;
   font-size: 12px;
 }
+
+main {
+  min-height: calc(100vh - 350px);
+}
