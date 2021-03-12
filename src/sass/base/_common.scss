@@ -8,6 +8,8 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+
+  // outline: 1px solid orange;
 }
 
 img {
@@ -30,4 +32,9 @@ body {
   font-family: Roboto;
   font-style: normal;
   font-size: 12px;
+  background-image: url(../images/background/intersection.png);
+}
+
+main {
+  min-height: calc(100vh - 77px);
 }

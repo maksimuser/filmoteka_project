@@ -1,0 +1,105 @@
+.section-trend {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.trend-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 20px;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  max-width: calc(100vw - 40px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trend-item {
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 3px;
+}
+
+.trend-item:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.trend-poster {
+  height: 400px;
+}
+.trend-title {
+  padding-top: 10px;
+  padding-left: 5px;
+  margin: 0;
+
+  font-weight: 500;
+  font-size: 12px;
+
+  color: $dark-color;
+  text-transform: uppercase;
+}
+
+.trend-text {
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  margin: 0;
+
+  // align-items: center;
+  // text-align: center;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+
+  color: $orange-color;
+}
+
+.trend-genre {
+  margin: 0;
+}
+
+// стили для рейтинга
+.trend-vote {
+  margin: 0;
+  margin-left: 10px;
+  padding: 1px 6px 1px 6px;
+
+  width: 36px;
+
+  text-align: center;
+
+  background: $orange-color;
+  border-radius: 5px;
+  color: $white-color;
+}
+
+.trend-items .trend-poster {
+  width: 100%;
+
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .trend-items {
+    grid-gap: 30px;
+  }
+  .section-trend {
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .trend-items {
+    grid-template-columns: repeat(auto-fill, minmax(274px, 1fr));
+  }
+}
+
+.trend-item {
+  background-color: #fff;
+}

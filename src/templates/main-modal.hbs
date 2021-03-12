@@ -1,0 +1,41 @@
+<div class="modal-box">
+    <div class="modal-section-img">
+        {{#if poster_path}}
+        <img class="modal-image" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{poster_path}}"
+            alt="{{media_type}}" data-type="{{media_type}}" data-src="{{id}}">
+        {{else}}
+        <img class="modal-image"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3f0jzlQxiDeJfx1BxwyCSAcMvygM3TvO05w&usqp=CAU"
+            data-src="{{id}}" />
+        {{/if}}
+
+    </div>
+
+    <div class=" modal-description">
+        <h2 class="modal-description-title">{{original_name}}{{title}}</h2>
+        <div class="modal-info">
+            <ul class="modal-info-list">
+                <li>Vote / Votes</li>
+                <li>Popularity</li>
+                <li>Original Title</li>
+                <li>Genre</li>
+            </ul>
+            <ul class="modal-info-list">
+                <li><span>{{vote_average}}</span>/<span>{{vote_count}}</span></li>
+                <li>{{popularity}}</li>
+                <li>{{original_title}}{{original_name}}</li>
+
+                {{#each genres}}<li>{{this.name}}</li>{{/each}}
+
+            </ul>
+        </div>
+        <h3 class="about-title">ABOUT</h3>
+        <p class="about-text">{{overview}}</p>
+        <div class="modal-buttons">
+            <button type="button" data-id="{{id}}" class="to-watched">add to
+                Watched</button>
+            <button type="button" data-id="{{id}}" class="add-to-queue">add to queue</button>
+
+        </div>
+
+    </div>

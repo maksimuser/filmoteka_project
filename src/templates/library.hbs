@@ -1,0 +1,20 @@
+{{#each this}}
+<li class="trend-item" data-id='{{id}}'>
+    <a class="trend-link" href="#">
+        <div class="trend-thumb">
+            {{#if poster_path}}
+            <img class="trend-poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{media_type}}"
+                data-type="{{media_type}}" data-src="{{id}}" height="400">
+            {{else}}
+            <img class="trend-poster" src="https://i.pinimg.com/736x/83/46/1d/83461d0ef2351335f037cb38f42cbac7.jpg"
+                data-src="{{id}}" height="400" />
+            {{/if}}
+        </div>
+        <h1 class="trend-title">{{title}}</h1>
+        <div class="trend-text">
+            <p class="trend-genre data"> {{#each genres}}
+                {{this.name}}{{/each}} | {{release_date}} |<span class="trend-vote">{{vote_average}}</span></p>
+        </div>
+    </a>
+</li>
+{{/each}}

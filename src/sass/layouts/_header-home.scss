@@ -1,0 +1,257 @@
+.page-header {
+  z-index: 1;
+  left: 0;
+  right: 0;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 230px;
+}
+
+.page-bg-home {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/mobile/Rectangle@1x.jpg);
+}
+
+.page-bg-lib {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/mobile/fRectangle@1x.jpg);
+}
+
+.search-icon {
+  fill: $white-color;
+}
+
+.navigation-item {
+  margin-right: 20px;
+  color: $white-color;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-right: auto;
+  align-items: flex-end;
+  padding-top: 41px;
+  padding-bottom: 12px;
+}
+
+.logo-name {
+  display: none;
+}
+
+.logo-name:hover {
+  color: $orange-color;
+}
+
+.header-navigation {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.navigation-link {
+  color: $white-color;
+}
+
+.navigation-link:hover {
+  color: $white-color;
+}
+
+.navigation-item {
+  position: relative;
+}
+
+.navigation-item:first-child {
+  margin-right: 39px;
+}
+
+.home:hover {
+  color: $orange-color;
+}
+
+.search-input {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: $white-color;
+  margin-bottom: 97px;
+  font-size: 18px;
+
+  border-bottom: 1px solid #9e9e9e;
+}
+
+.search-form .search-input.js-input {
+  width: 240px;
+  margin: 0;
+  font-size: 16px;
+  height: 25px;
+}
+
+#search-form .search-input:focus {
+  border-bottom: 1px solid $orange-color;
+  -webkit-box-shadow: 0 1px 0 0 $orange-color;
+  box-shadow: 0 1px 0 0 $orange-color;
+}
+@media screen and (min-width: 768px) {
+  .search-form .search-input.js-input {
+    width: 380px;
+  }
+}
+
+.search-form {
+  padding-top: 35px;
+  text-align: center;
+}
+
+.search-icon {
+  margin-left: -18px;
+}
+
+.search-input::placeholder {
+  color: $white-color;
+}
+
+.logo-link {
+  display: flex;
+  align-items: flex-end;
+}
+
+.logo-span {
+  display: flex;
+  align-items: flex-end;
+}
+
+.current::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: $orange-color;
+  left: 0;
+  bottom: -3px;
+}
+
+@media screen and (min-width: 768px) {
+  .page-bg-home {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/tablet/Rectangle@1x.jpg);
+    background-position: center;
+  }
+
+  .page-bg-lib {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/tablet/fRectangle@1x.jpg);
+    background-position: center;
+  }
+
+  .logo-image {
+    margin-right: 12px;
+  }
+
+  .logo-name {
+    display: block;
+    font-size: 30px;
+    color: $white-color;
+    margin-bottom: -10px;
+  }
+
+  .logo {
+    display: flex;
+  }
+
+  .search-input {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .page-bg-home {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/desktop/Rectangle@1x.jpg);
+    background-position: center;
+  }
+
+  .page-bg-lib {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/desktop/fRectangle@1x.jpg);
+    background-position: center;
+  }
+
+  .search-input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+// стили для иконок, пример верю))
+
+.login-icon {
+  position: absolute;
+  fill: $white-color;
+  margin-top: 20px;
+  right: 50px;
+}
+
+.account-details.navigation-item {
+  display: block;
+  text-align: end;
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
+#modal-account {
+  padding-top: 60px;
+}
+
+.header-btn:focus {
+  background-color: $orange-color;
+}
+
+.header-btn:hover {
+  background-color: $orange-color;
+}
+
+.btn-wrapper {
+  padding-top: 25px;
+}
+
+.btn-active-color {
+  background-color: $orange-color;
+}
+
+.navigation-link:hover {
+  color: $orange-color;
+}
