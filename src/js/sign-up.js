@@ -1,17 +1,7 @@
 import obj from './auth';
-
-// import "firebase/auth";
-// import "firebase/firestore";
-// import "firebase/analytics";
-
-// import trendMoviesMarkup from '../templates/trend-movies.hbs';
-// import openModal from '../js/modal'
-// import { log } from 'handlebars';
-
 import * as PNotify from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
-
 import ref from './refs';
 
 const { defaultModules } = require('@pnotify/core');
@@ -31,7 +21,7 @@ class User {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(cred => {
           return obj.db.collection('users').doc(cred.user.uid).set({
-            NickName: ref.signupForm['signup-bio'].value,
+            name: ref.signupForm['signup-bio'].value,
             queue: [],
             watched: [],
           });
@@ -45,11 +35,13 @@ class User {
           M.Modal.getInstance(modal).close();
           ref.signupForm.reset();
         })
-        .catch(
+        .catch(err => {
           PNotify.error({
             text: 'Password should contain at least 6 symbols!',
             delay: 1000,
-          }),
+          })
+        }
+          
         );
     } else {
       PNotify.error({

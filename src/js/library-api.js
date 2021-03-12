@@ -61,24 +61,36 @@ ref.loginForm.addEventListener('submit', e => {
     const modal = document.querySelector('#modal-login');
     M.Modal.getInstance(modal).close();
     ref.loginForm.reset();
-  });
-  PNotify.success({
-    text: 'Welcome back!',
-    delay: 1000,
-  });
+    PNotify.success({
+      text: 'Welcome back!',
+      delay: 1000,
+    })
+  }).catch(err => {
+    PNotify.error({
+      text: 'Invalid password',
+      delay: 1000,
+    })
+  });;
+ 
   ref.accountDetails.style.display = 'block';
 });
+
+
+
 
 let cardsArr = '';
 
 function addToQueue() {
+ 
   obj.auth.onAuthStateChanged(user => {
-    obj.db
+     obj.db
       .collection('users')
       .doc(user.uid)
       .update({
         queue: firebase.firestore.FieldValue.arrayUnion(cardsArr),
       });
+    
+    
   });
   PNotify.success({
     text: 'The movie have added to Queue!',
@@ -86,6 +98,7 @@ function addToQueue() {
   });
 }
 function addToWatched() {
+ 
   obj.auth.onAuthStateChanged(user => {
     obj.db
       .collection('users')
@@ -94,6 +107,9 @@ function addToWatched() {
         queue: firebase.firestore.FieldValue.arrayRemove(cardsArr),
         watched: firebase.firestore.FieldValue.arrayUnion(cardsArr),
       });
+
+    
+    
   });
   PNotify.success({
     text: 'The movie have added to Watched!',
@@ -101,7 +117,10 @@ function addToWatched() {
   });
 }
 function getCard(card) {
+ 
   cardsArr = card;
 }
 
 export default { addToQueue, getCard, addToWatched };
+
+  

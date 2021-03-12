@@ -1,4 +1,5 @@
 const refs = {
+
   loggedOutLinks: document.querySelectorAll('.logged-out'),
   loggedInLinks: document.querySelectorAll('.logged-in'),
   logout: document.querySelector('#logout'),
@@ -15,7 +16,6 @@ const refs = {
   signupForm: document.querySelector('#signup-form'),
   pagination: document.querySelector('.pagination'),
   logoRef: document.querySelector('.logo-link'),
-
   searchInput: document.querySelector('.js-input'),
   movieContainer: document.querySelector('.trend-movies-js'),
   spinnerRef: document.querySelector('.loader'),
@@ -23,7 +23,6 @@ const refs = {
   library: document.querySelector('.navigation-link-library'),
   formRef: document.querySelector('.search-form'),
   header: document.querySelector('.page-header'),
-  formRef: document.querySelector('.search-form'),
   element: document.querySelector('.pagination ul'),
 };
 

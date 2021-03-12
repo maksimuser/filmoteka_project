@@ -12,6 +12,7 @@ import apiService from './js/api-service';
 import updateTrendMarkup from './js/update-markup';
 import inputService from './js/input-service';
 import debounce from 'lodash.debounce';
+
 import MicroModal from 'micromodal';
 MicroModal.init();
 

@@ -249,8 +249,13 @@
     align-items: center;
   }
 }
-
 .modal-close-button:hover {
   color: #000000;
   background-color: #ff6b08;
+.modal {
+  height: auto;
+}
+.modal-content {
+  scrollbar-width: none;
+  height: auto;
 }
