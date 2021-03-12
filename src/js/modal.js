@@ -1,7 +1,7 @@
 import modal from '../templates/main-modal.hbs';
 import * as BasicLightBox from 'basiclightbox';
 import 'basiclightbox/src/styles/main.scss';
-
+import obj from './auth';
 import signFn from '../js/library-api';
 const key = `ebb87b3c3ccf067a0867ba65db09dab4`;
 const filmCard = document.querySelector(`.trend-items`);
@@ -32,7 +32,19 @@ const createModal = (event, filmById) => {
           .element()
           .querySelector('.modal-close-button')
           .addEventListener(`click`, closeByEsc);
+          obj.auth.onAuthStateChanged(user => {
+            if (!user) {
+            
         instance
+          .element()
+          .querySelector('.to-watched').style.display = 'none';
+          
+        instance
+          .element()
+          .querySelector('.add-to-queue').style.display = 'none';
+          
+            } else {
+              instance
           .element()
           .querySelector('.modal-box')
           .addEventListener('click', signFn.getCard(mas));
@@ -44,6 +56,9 @@ const createModal = (event, filmById) => {
           .element()
           .querySelector('.add-to-queue')
           .addEventListener('click', signFn.addToQueue);
+            }
+           })
+        
       },
     },
   );
@@ -60,7 +75,7 @@ const openModal = event => {
   if (event.target.nodeName !== 'IMG') {
     return;
   }
-
+  
   const idNum = event.target.dataset.src;
   document.querySelector(`.body`).classList.add(`no-scroll`);
   findMovieById(idNum);
