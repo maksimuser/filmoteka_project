@@ -15,6 +15,7 @@ const refs = {
     signupForm: document.querySelector('#signup-form'),
     pagination: document.querySelector('.pagination'),
     movies: document.querySelector('.trend-movies-js'),
+   
 }
 
 export default refs
