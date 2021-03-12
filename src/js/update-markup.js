@@ -1,16 +1,11 @@
 import trendMoviesMarkup from '../templates/trend-movies.hbs';
-
-const refs = {
-  movies: document.querySelector('.trend-movies-js'),
-};
+import refs from './refs';
 
 function updateTrendMarkup(trendMovies) {
-  console.log(trendMovies)
+  console.log(trendMovies);
   const markup = trendMoviesMarkup(trendMovies);
 
-  refs.movies.insertAdjacentHTML('beforeend', markup);
+  refs.movieContainer.insertAdjacentHTML('beforeend', markup);
 }
-
-
 
 export default updateTrendMarkup;

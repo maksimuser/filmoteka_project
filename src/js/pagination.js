@@ -1,22 +1,12 @@
 import apiService from './api-service';
 import updateTrendMarkup from './update-markup';
-const refs = {
-  movies: document.querySelector('.trend-movies-js'),
-};
-const movieContainer = document.querySelector('.trend-movies-js');
-const searchInput = document.querySelector('.js-input');
 import inputService from './input-service';
-const element = document.querySelector('.pagination ul');
+import refs from './refs';
 
-// let totalPages = 0;
-// let page = 1;
-
-// element.innerHTML = createPagination(totalPages, page);
-
-element.addEventListener('click', event => {
+refs.element.addEventListener('click', event => {
   apiService.totalPages;
   apiService.page;
-  const inputValue = searchInput.value;
+  const inputValue = refs.searchInput.value;
   if (event.target.className.includes('paginatorNumb')) {
     apiService.page = Number(event.target.dataset.number);
   } else if (event.target.className.includes('paginatorFirst')) {
@@ -31,8 +21,7 @@ element.addEventListener('click', event => {
 
   if (!inputValue) {
     apiService.fetchTrendMovie(apiService.page).then(trendMovies => {
-      refs.movies.innerHTML = '';
-      // createPagination(totalPages, page);
+      refs.movieContainer.innerHTML = '';
       updateTrendMarkup(trendMovies);
       window.scrollTo(0, 0);
       return;
@@ -41,8 +30,7 @@ element.addEventListener('click', event => {
     inputService
       .fetchInputMovie(inputValue, apiService.page)
       .then(trendMovies => {
-        movieContainer.innerHTML = '';
-        // createPagination(totalPages, page);
+        refs.movieContainer.innerHTML = '';
         updateTrendMarkup(trendMovies);
         window.scrollTo(0, 0);
         return;
@@ -106,6 +94,6 @@ export default function createPagination(totalPages, page) {
       liTag += `<li class="btn next paginatorNext"><span>Next<i class="fas fa-angle-right"></i></span></li>`;
     }
   }
-  element.innerHTML = liTag;
+  refs.element.innerHTML = liTag;
   return liTag;
 }

@@ -3,8 +3,8 @@
     <a class="trend-link" href="#">
         <div class="trend-thumb">
             {{#if poster_path}}
-            <img class="trend-poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{media_type}}"
-                data-type="{{media_type}}" data-src="{{id}}" height="400">
+            <img class="trend-poster" src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{media_type}}"
+                data-type="{{media_type}}" data-src="{{id}}" height="400" loading="lazy">
             {{else}}
             <img class="trend-poster" src="https://i.pinimg.com/736x/83/46/1d/83461d0ef2351335f037cb38f42cbac7.jpg"
                 data-src="{{id}}" height="400" />
