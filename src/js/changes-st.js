@@ -51,17 +51,17 @@ const setupUI = user => {
  //setup guides
  
 const setupCards = (dataQueue, dataWatched) => {
-   console.log(dataQueue)
-    const dataQ = dataQueue.map((data) => {
-        data.release_date = data.release_date.slice(0, 4)
-         return data
-    })
-    const dataW = dataWatched.map((data) => {
-        data.release_date = data.release_date.slice(0, 4)
-         return data
-   })
+    
+    
     if (dataQueue) {
-        
+        const dataQ = dataQueue.map((data) => {
+            data.release_date = data.release_date.slice(0, 4)
+             return data
+        })
+        const dataW = dataWatched.map((data) => {
+            data.release_date = data.release_date.slice(0, 4)
+             return data
+       })
         
         let markupQueue = ''
         let markupWatched = ''
