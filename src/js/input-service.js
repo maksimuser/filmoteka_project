@@ -16,6 +16,18 @@ refs.formRef.addEventListener('submit', event => {
 });
 refs.homeRef.addEventListener('click', goHome);
 refs.logoRef.addEventListener('click', goHome);
+refs.btnWatched.addEventListener('click', activeWatchedBtn);
+refs.btnQueue.addEventListener('click', activeQueueBtn);
+
+function activeWatchedBtn() {
+  refs.btnQueue.classList.remove('btn-active-color');
+  refs.btnWatched.classList.add('btn-active-color');
+}
+
+function activeQueueBtn() {
+  refs.btnQueue.classList.add('btn-active-color');
+  refs.btnWatched.classList.remove('btn-active-color');
+}
 
 function returnHome() {
   refs.formRef.hidden = false;
@@ -26,6 +38,8 @@ function returnHome() {
 }
 
 function switchToLibrary() {
+  refs.btnWatched.classList.remove('btn-active-color');
+  refs.btnQueue.classList.add('btn-active-color');
   refs.spinnerRef.hidden = true;
   refs.formRef.hidden = true;
   refs.homeRef.classList.remove('current');

@@ -247,3 +247,11 @@
 .btn-wrapper {
   padding-top: 25px;
 }
+
+.btn-active-color {
+  background-color: $orange-color;
+}
+
+.navigation-link:hover {
+  color: $orange-color;
+}
