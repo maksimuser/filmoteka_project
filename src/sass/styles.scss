@@ -1,14 +1,15 @@
+@import './utils/normalize';
+@import './utils/materialize';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import './utils/variables';
 @import './base/common';
 @import './base/container';
 @import './components/button';
 @import './layouts/header-home.scss';
 @import './layouts/header-library.scss';
-@import './layouts/main.scss';
 @import './layouts/modal-team';
 @import './layouts/trend-section';
 @import './layouts/footer.scss';
 @import './layouts/modal.scss';
-
 @import './components/spinner.scss';
 @import './layouts/pagination.scss';

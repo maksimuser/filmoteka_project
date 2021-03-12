@@ -1,37 +1,3 @@
-// Бекграунд для my library, будет появлятся при клике на кнопку
-
-// .page-header {
-//   background-image: linear-gradient(
-//       to right,
-//       rgba(0, 0, 0, 0.56),
-//       rgba(0, 0, 0, 0.56)
-//     ),
-//     url(../images/mobile/fRectangle@2x.jpg);
-// }
-
-// @media screen and (min-width: 768px) {
-//   .page-header {
-//     background-image: linear-gradient(
-//         to right,
-//         rgba(0, 0, 0, 0.56),
-//         rgba(0, 0, 0, 0.56)
-//       ),
-//       url(../images/tablet/fRectangle@2x.jpg);
-//   }
-// }
-// @media screen and (min-width: 1024px) {
-//   .page-header {
-//     background-image: linear-gradient(
-//         to right,
-//         rgba(0, 0, 0, 0.56),
-//         rgba(0, 0, 0, 0.56)
-//       ),
-//       url(../images/desktop/fRectangle@2x.jpg);
-//   }
-// }
-
-// ====================================================
-
 .header-btn {
   display: none;
   border: 1px solid $white-color;

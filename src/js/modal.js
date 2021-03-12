@@ -1,8 +1,11 @@
 import modal from '../templates/main-modal.hbs';
 import * as BasicLightBox from 'basiclightbox';
 import 'basiclightbox/src/styles/main.scss';
+
 import obj from './auth';
+
 import signFn from '../js/library-api';
+
 const key = `ebb87b3c3ccf067a0867ba65db09dab4`;
 const filmCard = document.querySelector(`.trend-items`);
 let mas = {};
@@ -12,7 +15,6 @@ const findMovieById = idNum => {
   )
     .then(res => res.json())
     .then(filmById => {
-
       mas = filmById;
 
       const formModal = modal(filmById);
@@ -120,4 +122,3 @@ const closeOnBgn = event => {
 };
 
 export default openModal;
-

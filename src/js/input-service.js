@@ -2,62 +2,50 @@ import axios from 'axios';
 import apiService from './api-service';
 import updateTrendMarkup from './update-markup';
 import createPagination from './pagination';
-
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import { error } from '@pnotify/core';
+import refs from './refs';
 
 const apiKey = 'ebb87b3c3ccf067a0867ba65db09dab4';
-const formRef = document.querySelector('.search-form');
-const movieContainer = document.querySelector('.trend-movies-js');
-const searchInput = document.querySelector('.js-input');
-const logoRef = document.querySelector('.logo-link');
-const homeRef = document.querySelector('.navigation-link-home');
-const library = document.querySelector('.navigation-link-library');
-const element = document.querySelector('.pagination ul');
-const logout = document.querySelector('#logout');
-const header = document.querySelector('.page-header');
-const spinnerRef = document.querySelector('.loader');
 
-logout.addEventListener('click', event => {
-  formRef.hidden = false;
-  homeRef.classList.add('current');
-  library.classList.remove('current');
-  header.classList.add('page-bg-home');
-  header.classList.remove('page-bg-lib');
-});
-
-library.addEventListener('click', event => {
-  spinnerRef.hidden = true;
-  formRef.hidden = true;
-  homeRef.classList.remove('current');
-  library.classList.add('current');
-  header.classList.remove('page-bg-home');
-  header.classList.add('page-bg-lib');
-});
-
-formRef.addEventListener('submit', event => {
+refs.logout.addEventListener('click', returnHome);
+refs.library.addEventListener('click', switchToLibrary);
+refs.formRef.addEventListener('submit', event => {
   event.preventDefault();
 });
+refs.homeRef.addEventListener('click', goHome);
+refs.logoRef.addEventListener('click', goHome);
 
-homeRef.addEventListener('click', goHome);
-logoRef.addEventListener('click', goHome);
+function returnHome() {
+  refs.formRef.hidden = false;
+  refs.homeRef.classList.add('current');
+  refs.library.classList.remove('current');
+  refs.header.classList.add('page-bg-home');
+  refs.header.classList.remove('page-bg-lib');
+}
+
+function switchToLibrary() {
+  refs.spinnerRef.hidden = true;
+  refs.formRef.hidden = true;
+  refs.homeRef.classList.remove('current');
+  refs.library.classList.add('current');
+  refs.header.classList.remove('page-bg-home');
+  refs.header.classList.add('page-bg-lib');
+}
 
 function goHome() {
-  element.hidden = false;
-  formRef.hidden = false;
-
-  header.classList.add('page-bg-home');
-  header.classList.remove('page-bg-lib');
-
-  homeRef.classList.add('current');
-  library.classList.remove('current');
+  refs.element.hidden = false;
+  refs.formRef.hidden = false;
+  refs.header.classList.add('page-bg-home');
+  refs.header.classList.remove('page-bg-lib');
+  refs.homeRef.classList.add('current');
+  refs.library.classList.remove('current');
 
   apiService.resetPage();
-
   apiService.fetchTrendMovie().then(trendMovies => {
-    movieContainer.innerHTML = '';
-    formRef.reset();
+    refs.movieContainer.innerHTML = '';
+    refs.formRef.reset();
     updateTrendMarkup(trendMovies);
   });
 }
@@ -73,15 +61,15 @@ export default {
       const dataVal = inputVal.data.results;
 
       if (apiService.totalPages <= 1) {
-        element.hidden = true;
+        refs.element.hidden = true;
       } else {
-        element.hidden = false;
+        refs.element.hidden = false;
       }
 
       if (!dataVal.length) {
         error({
-          title: 'Film not found.',
-          text: 'Check film name and try again.',
+          title: 'Film not found!',
+          text: 'Check film name and try again!',
           delay: 3000,
           closerHover: true,
         });

@@ -15,7 +15,7 @@
       rgba(0, 0, 0, 0.56),
       rgba(0, 0, 0, 0.56)
     ),
-    url(../images/mobile/Rectangle@2x.jpg);
+    url(../images/mobile/Rectangle@1x.jpg);
 }
 
 .page-bg-lib {
@@ -24,7 +24,7 @@
       rgba(0, 0, 0, 0.56),
       rgba(0, 0, 0, 0.56)
     ),
-    url(../images/mobile/fRectangle@2x.jpg);
+    url(../images/mobile/fRectangle@1x.jpg);
 }
 
 .search-icon {
@@ -54,6 +54,10 @@
   display: none;
 }
 
+.logo-name:hover {
+  color: $orange-color;
+}
+
 .header-navigation {
   display: flex;
   list-style: none;
@@ -74,6 +78,10 @@
 
 .navigation-item:first-child {
   margin-right: 39px;
+}
+
+.home:hover {
+  color: $orange-color;
 }
 
 .search-input {
@@ -112,7 +120,6 @@
 }
 
 .search-icon {
-  // position: absolute;
   margin-left: -18px;
 }
 
@@ -147,7 +154,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/tablet/Rectangle@2x.jpg);
+      url(../images/tablet/Rectangle@1x.jpg);
     background-position: center;
   }
 
@@ -157,7 +164,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/tablet/fRectangle@2x.jpg);
+      url(../images/tablet/fRectangle@1x.jpg);
     background-position: center;
   }
 
@@ -188,7 +195,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/desktop/Rectangle@2x.jpg);
+      url(../images/desktop/Rectangle@1x.jpg);
     background-position: center;
   }
 
@@ -198,7 +205,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/desktop/fRectangle@2x.jpg);
+      url(../images/desktop/fRectangle@1x.jpg);
     background-position: center;
   }
 
@@ -235,4 +242,8 @@
 
 .header-btn:hover {
   background-color: $orange-color;
+}
+
+.btn-wrapper {
+  padding-top: 25px;
 }
